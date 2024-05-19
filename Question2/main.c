@@ -39,7 +39,7 @@ int main(){
 	printS_5x7(2, 0, "meow meow meow");
 	printS_5x7(2, 8, "ADC7 conversion test");
 	printS_5x7(2, 16, "Reference voltage: 3.3 V");
-	printS_5x7(2, 24, "A/D resolution: 0.73 mV"); // <------------------------ nguuuuuuuuuu
+	printS_5x7(2, 24, "A/D resolution: 0.73 mV"); // <------------------------ remember to change this
 	printS_5x7(2, 40, "A/D value:");
 	printS_5x7(2, 48, "Voltage value:");
 
