@@ -71,6 +71,7 @@ int main(){
 		if(voltage_input_val > 2){
 			printS_5x7(2, 56, "hehe");
 			
+			// put AD at 2585 for best quality hehe
 			SPI2_TX(0x48); // H
 			SPI2_TX(0x45); // E
 			SPI2_TX(0x48); // H
