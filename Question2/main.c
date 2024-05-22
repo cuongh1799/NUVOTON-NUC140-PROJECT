@@ -71,18 +71,20 @@ int main(){
 		if(voltage_input_val > 2){
 			printS_5x7(2, 56, "hehe");
 			
-			SPI2_TX(0b01001000); // H
-			SPI2_TX(0b1110); // E
-			SPI2_TX(0b01001000); // H
-			SPI2_TX(0b1110); // E
-			CLK_SysTickDelay(2000);
+			SPI2_TX(0x48); // H
+			SPI2_TX(0x45); // E
+			SPI2_TX(0x48); // H
+			SPI2_TX(0x45); // E
+			
+			//SPI2_TX(0xE2);
+			CLK_SysTickDelay(200);
 			
 		}
-		else printS_5x7(2, 56, "     ");
+		else {
+			printS_5x7(2, 56, "     ");
+		}
 		 
-		CLK_SysTickDelay(2000000);
-		
-		
+		//CLK_SysTickDelay(2000000);
 	}
 
 }
@@ -161,8 +163,8 @@ void SPI2_config(void){
 	SPI2->CNTRL |= 1 << 11; //1: SPI clock idle high
 	SPI2->CNTRL &= ~(1 << 2); // Disable transmit at negative edge
 	//SPI2->CNTRL |= 1 << 1; // test later hehe idk if its needed
-	SPI2->CNTRL &= ~(1 << 10); //0: MSB is sent first
-	SPI2->CNTRL |= 1 << 10;
+	SPI2->CNTRL &= ~(1 << 10); 
+	SPI2->CNTRL |= 1 << 10; //1: LSB is sent first
 	SPI2->CNTRL |= 8 << 3; // 1 byte/word
 	
 	SPI2->DIVIDER = 24; // SPI clock divider. SPI clock = HCLK / ((DIVIDER+1)*2)

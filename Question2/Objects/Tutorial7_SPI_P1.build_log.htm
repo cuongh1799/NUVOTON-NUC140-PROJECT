@@ -21,7 +21,7 @@ Target DLL:      NULink\Nu_Link.dll V3.02
 Dialog DLL:      TARMCM1.DLL V1.14.2.0
  
 <h2>Project:</h2>
-C:\Users\cuong\OneDrive\Documents\EET2481EmbeddedDesign\Assessment3Embedded\Question2\Question2.uvprojx
+C:\Users\cuong\OneDrive\Documents\GitHub\NUVOTON-NUC140-PROJECT\Question2\Question2.uvprojx
 Project File Date:  08/10/2022
 
 <h2>Output:</h2>
@@ -148,135 +148,123 @@ C:/Keil_v5/Library/NUC100Series/Include\NUC100Series.h(13625): warning: non-port
 #include "ACMP.h"
          ^~~~~~~~
          "acmp.h"
-main.c(74): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-                        SPI2_TX(0b01001000); // H
-                                ^
-main.c(75): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-                        SPI2_TX(0b1110); // E
-                                ^
-main.c(76): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-                        SPI2_TX(0b01001000); // H
-                                ^
-main.c(77): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-                        SPI2_TX(0b1110); // E
-                                ^
-main.c(99): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(101): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         PA->PMD &= ~(0b11 << 14);
                      ^
-main.c(99): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(101): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         PA->PMD &= ~(0b11 << 14);
                 ~~ ^~~~~~~~~~~~~
-main.c(100): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(102): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         PA->PMD |= (0b01 << 14); 
                     ^
-main.c(104): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(106): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SYS->ALT_MFP &= ~(1 << 11); // External Bus Interface page.83
                      ~~ ^~~~~~~~~~
-main.c(106): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(108): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         ADC->ADCR |= (0b11 << 2); // Continuous scan mode
                       ^
-main.c(107): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(109): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         ADC->ADCR &= ~(1 << 1); // ADC interrupt is disabled
                   ~~ ^~~~~~~~~
-main.c(111): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(113): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         ADC->ADCHER &= ~(0b11 << 8); 
                          ^
-main.c(111): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(113): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         ADC->ADCHER &= ~(0b11 << 8); 
                     ~~ ^~~~~~~~~~~~
-main.c(122): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(124): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 19); //0: PLL input is HXT
                     ~~ ^~~~~~~~~~
-main.c(123): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(125): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 16); //PLL in normal mode
                     ~~ ^~~~~~~~~~
-main.c(124): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(126): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= (~(0x01FF << 0));
                     ~~  ^~~~~~~~~~~~~~
-main.c(126): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(128): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 18); //0: enable PLLOUT
                     ~~ ^~~~~~~~~~
-main.c(131): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(133): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKSEL0 &= (~(0x07 << 0));
                      ~~  ^~~~~~~~~~~~
-main.c(134): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(136): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKDIV &= (~0x0F << 0);
                     ~~  ~~~~~~^~~~
-main.c(143): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(145): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKSEL1 &= ~(0x03 << 2); // ADC clock source is 12 MHz
                      ~~ ^~~~~~~~~~~~
-main.c(144): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(146): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKDIV &= ~(0x0FF << 16);
                     ~~ ^~~~~~~~~~~~~~
-main.c(134): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+main.c(136): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
         CLK->CLKDIV &= (~0x0F << 0);
                         ~~~~~ ^
-main.c(157): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(159): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->CNTRL &= ~(1 << 23); //0: disable variable clock feature
                     ~~ ^~~~~~~~~~
-main.c(158): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(160): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->CNTRL &= ~(1 << 22); //0: disable two bits transfer mode
                     ~~ ^~~~~~~~~~
-main.c(159): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(161): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->CNTRL &= ~(1 << 18); //0: select Master mode
                     ~~ ^~~~~~~~~~
-main.c(160): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(162): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->CNTRL &= ~(1 << 17); //0: disable SPI interrupt
                     ~~ ^~~~~~~~~~
-main.c(162): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(164): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->CNTRL &= ~(1 << 2); // Disable transmit at negative edge
                     ~~ ^~~~~~~~~
-main.c(164): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        SPI2->CNTRL &= ~(1 << 10); //0: MSB is sent first
-                    ~~ ^~~~~~~~~~
-main.c(178): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        SPI3->CNTRL &= ~(1 << 23); //0: disable variable clock feature
-                    ~~ ^~~~~~~~~~
-main.c(179): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        SPI3->CNTRL &= ~(1 << 22); //0: disable two bits transfer mode
+main.c(166): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SPI2->CNTRL &= ~(1 << 10); 
                     ~~ ^~~~~~~~~~
 main.c(180): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        SPI3->CNTRL &= ~(1 << 18); //0: select Master mode
+        SPI3->CNTRL &= ~(1 << 23); //0: disable variable clock feature
                     ~~ ^~~~~~~~~~
 main.c(181): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SPI3->CNTRL &= ~(1 << 22); //0: disable two bits transfer mode
+                    ~~ ^~~~~~~~~~
+main.c(182): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        SPI3->CNTRL &= ~(1 << 18); //0: select Master mode
+                    ~~ ^~~~~~~~~~
+main.c(183): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 17); //0: disable SPI interrupt
                     ~~ ^~~~~~~~~~
-main.c(184): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(186): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 10); //0: MSB is sent first
                     ~~ ^~~~~~~~~~
-main.c(185): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(187): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         SPI3->CNTRL &= ~(0b11 << 8); //00: one transmit/receive word will be executed in one data transfer
                          ^
-main.c(185): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(187): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(0b11 << 8); //00: one transmit/receive word will be executed in one data transfer
                     ~~ ^~~~~~~~~~~~
-main.c(186): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(188): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         SPI3->CNTRL &= ~(0b11111 << 3);
                          ^
-main.c(186): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(188): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(0b11111 << 3);
                     ~~ ^~~~~~~~~~~~~~~
-main.c(211): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(213): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->SSR &= ~(1 << 0);
                   ~~ ^~~~~~~~~
-main.c(220): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(222): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->SSR &= ~(1 << 0);
                   ~~ ^~~~~~~~~
-main.c(236): warning: '&' within '|' [-Wbitwise-op-parentheses]
+main.c(238): warning: '&' within '|' [-Wbitwise-op-parentheses]
         LCD_command(0x10 | (ColumnAddr >> 4) & 0xF);
                          ~ ~~~~~~~~~~~~~~~~~~^~~~~
-main.c(236): note: place parentheses around the '&' expression to silence this warning
+main.c(238): note: place parentheses around the '&' expression to silence this warning
         LCD_command(0x10 | (ColumnAddr >> 4) & 0xF);
                                              ^
                            (                      )
-main.c(246): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(248): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI2->SSR &= ~(1 << 0);
                   ~~ ^~~~~~~~~
-68 warnings generated.
+64 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=4804 RO-data=840 RW-data=44 ZI-data=1120  
-".\Objects\Tutorial7_SPI_P1.axf" - 0 Error(s), 68 Warning(s).
+Program Size: Code=4788 RO-data=840 RW-data=44 ZI-data=1120  
+".\Objects\Tutorial7_SPI_P1.axf" - 0 Error(s), 64 Warning(s).
 
 <h2>Software Packages used:</h2>
 
