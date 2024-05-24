@@ -9,63 +9,9 @@
 #define HXT_STATUS 1<<0
 #define PLL_STATUS 1<<2
 
-void SPI3_config(void); // for the LCD
-void System_config(void);
-void LCD_start(void);
-void LCD_command(unsigned char temp);
-void LCD_data(unsigned char temp);
-void LCD_clear(void);
-void LCD_SetAddress(uint8_t PageAddr, uint8_t ColumnAddr);
-void SPI2_TX(unsigned char temp);
-
-void clr_segment(void);
-void show_segment(unsigned char n, unsigned char number);
-void enable_TMR0(void);
-static int TimePassed = 0;			// for tmr interrupt
-
-extern unsigned char amogus[32*32] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xF8,0xFC,0xFE,0xFE,0x3E,0x3E,0x3C,0x38,0x70,0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFE,0xFE,0xFF,0xFF,0xFF,0xFF,0xFF,0xFC,0xF8,0xF8,0xFC,0xFC,0xDC,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x7F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x0F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x40,0xC0,0xC0,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x98,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x90,0x80,0x80,0x80,0x80,0x80,0x80,0x80};
-static int shots = 0;
-static char shots_ch[4] = "0000";
-
-int main(){
-
-	System_config();
-	SPI3_config();
-	
-	LCD_start();
-	LCD_clear();
-	
-	PB->PMD &= (~(0x03<<30)); // enable GPB15 (the button)
-	
-	PC->DOUT |= (1<<7);     //Logic 1 to turn on the digit
-	PC->DOUT &= ~(1<<6);		//SC3
-	PC->DOUT &= ~(1<<5);		//SC2
-	PC->DOUT &= ~(1<<4);		//SC1
-	
-	enable_TMR0();
-	/*
-	GPB15 shooting
-	*/
-	PB->PMD &= ~(0b11 << 30);
-	//PB->PMD |= 0b << 30; 
-	PB->OFFD &= ~(1 << 15);
-	PB->DBEN &= ~(1 << 15);
-	PB->DBEN |= (1 << 15); // debounce enable
-	PB->PMD &= (~(0x03 << 30)); // GPIOB.15 is configured as input
-	PB->IMD &= (~(1 << 15)); 		// Detect edge-trigger interrupt 
-	PB->IEN |= (1 << 15); 			// Enable interrupt (falling edge-trigger)
-	
-	while(1){																
-		
-		printS_5x7(4, 10, "Battleship");
-		printS_5x7(4, 18, "By hehe");
-		printS_5x7(4, 26, shots_ch);
-		//draw_Bmp32x32(4, 30, 1, 0, amogus); 
-		
-		
-	}
-}
-
+/*
+----------------------SYSTEM CONFIG------------------------
+*/
 void System_config(void){
 	SYS_UnlockReg(); // Unlock protected registers
 	
@@ -102,7 +48,9 @@ void System_config(void){
 }
 
 
-// -----------------------UART0 config-----------------------
+/*
+---------------------UART CONFIG--------------------------------
+*/
 
 void UART0_Init(void) {
 	// UART0 pin configuration. PB.1 pin is for UART0 TX
@@ -136,7 +84,7 @@ void UART0_Init(void) {
 }
 
 
-// -------------------------Timer0 configuration-----------------------------------------
+// -------------------------Timer configuration-----------------------------------------
 void enable_TMR0(void){
 	CLK->CLKSEL1 &= ~(0x111 << 8);	
 	CLK->CLKSEL1 |= (0b010 << 8);			// 12MHz
@@ -159,11 +107,6 @@ void enable_TMR0(void){
 	// CONFIG CLOCK, OPERATING MODE, AND VALUE FOR TIMER0 ENDS-------
 }
 
-// Timer0 interrupt - for time transition each 7Segment LED to avoid bouncing
-void TMR0_IRQHandler(void){
-	TimePassed = 1;						// Time taken/time delay to scan LEDs transition 
-	TIMER0->TISR |= (1<<0);		// generate interrupt
-}
 /*
 ----------------------------SPI3--------------------------------------------
 */
@@ -264,11 +207,3 @@ void show_segment(unsigned char n, unsigned char number)
 	}
 	PC->DOUT |= (1<<(4+n));
 }
-/*
-*/
-void EINT1_IRQHandler(void){
-	
-}
-
-
-

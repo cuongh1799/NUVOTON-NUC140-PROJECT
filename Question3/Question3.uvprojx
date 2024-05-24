@@ -420,16 +420,6 @@
             </File>
           </Files>
         </Group>
-        <Group>
-          <GroupName>Header</GroupName>
-          <Files>
-            <File>
-              <FileName>Setup.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Setup.h</FilePath>
-            </File>
-          </Files>
-        </Group>
       </Groups>
     </Target>
   </Targets>
