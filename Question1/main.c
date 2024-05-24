@@ -7,6 +7,8 @@ void UART02_IRQHandler(void);
 void UART0_Init(void);
 
 int main(void) {
+		PD->PMD &= ~(0x03 << 6);
+		PD->PMD |= 1 << 6;
     // Initialize system clock and multi-function I/O
     SYS_Init();
     

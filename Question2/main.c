@@ -36,8 +36,8 @@ int main(){
 	LCD_start();
 	LCD_clear();
 
-	printS_5x7(2, 0, "meow meow meow");
-	printS_5x7(2, 8, "ADC7 conversion test");
+	printS_5x7(2, 0, "Group name: hehe");
+	printS_5x7(2, 8, "ADC7 conversion Assessment");
 	printS_5x7(2, 16, "Reference voltage: 3.3 V");
 	printS_5x7(2, 24, "Res: 8.0586x10^-4 V"); // <------------------------ remember to change this
 	printS_5x7(2, 40, "A/D value:");
@@ -118,6 +118,9 @@ void ADC_config(void){
 
 void System_config(void){
 	SYS_UnlockReg(); // Unlock protected registers
+	
+	PA->PMD &= ~(0b11 << 13);
+	PA->PMD |= (0b01 << 13);
 	
 	CLK->PWRCON |= (1 << 0);
   while(!(CLK->CLKSTATUS & HXT_STATUS));

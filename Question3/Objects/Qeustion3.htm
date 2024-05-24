@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [.\Objects\Tutorial7_SPI_P1.axf]</title></head>
+<title>Static Call Graph - [.\Objects\Qeustion3.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image .\Objects\Tutorial7_SPI_P1.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Fri May 24 14:51:17 2024
+<H1>Static Call Graph for image .\Objects\Qeustion3.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6140002: Last Updated: Fri May 24 20:54:53 2024
 <BR><P>
 <H3>Maximum Stack Usage =        104 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -61,7 +61,7 @@ Function Pointers
  <LI><a href="#[3]">SVC_Handler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
  <LI><a href="#[5]">SysTick_Handler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
  <LI><a href="#[26]">SystemInit</a> from system_nuc100series.o(.text.SystemInit) referenced from startup_nuc100series.o(.text)
- <LI><a href="#[e]">TMR0_IRQHandler</a> from main.o(.text.TMR0_IRQHandler) referenced from startup_nuc100series.o(RESET)
+ <LI><a href="#[e]">TMR0_IRQHandler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
  <LI><a href="#[f]">TMR1_IRQHandler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
  <LI><a href="#[10]">TMR2_IRQHandler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
  <LI><a href="#[11]">TMR3_IRQHandler</a> from startup_nuc100series.o(.text) referenced from startup_nuc100series.o(RESET)
@@ -310,6 +310,9 @@ Global Symbols
 <P><STRONG><a name="[17]"></a>SPI3_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_nuc100series.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_nuc100series.o(RESET)
 </UL>
+<P><STRONG><a name="[e]"></a>TMR0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_nuc100series.o(.text))
+<BR>[Address Reference Count : 1]<UL><LI> startup_nuc100series.o(RESET)
+</UL>
 <P><STRONG><a name="[f]"></a>TMR1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_nuc100series.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_nuc100series.o(RESET)
 </UL>
@@ -351,8 +354,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = __user_setup_stackheap
 </UL>
-<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
-<LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<BR>[Calls]<UL><LI><a href="#[29]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_initial_stackheap
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_perproc_libspace
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_sh
 </UL>
@@ -361,8 +364,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + Unknown Stack Size
 <LI>Call Chain = exit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_call_atexit_fns (Weak Reference)
+<BR>[Calls]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_call_atexit_fns (Weak Reference)
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_exit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -383,9 +386,9 @@ Global Symbols
 
 <P><STRONG><a name="[72]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[73]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[73]"></a>__decompress</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __dczerorl.o(.text), UNUSED)
 
-<P><STRONG><a name="[74]"></a>__decompress1</STRONG> (Thumb, 86 bytes, Stack size unknown bytes, __dczerorl2.o(.text), UNUSED)
+<P><STRONG><a name="[74]"></a>__decompress0</STRONG> (Thumb, 58 bytes, Stack size unknown bytes, __dczerorl.o(.text), UNUSED)
 
 <P><STRONG><a name="[75]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
@@ -432,9 +435,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e]"></a>TMR0_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, main.o(.text.TMR0_IRQHandler))
-<BR>[Address Reference Count : 1]<UL><LI> startup_nuc100series.o(RESET)
-</UL>
 <P><STRONG><a name="[3e]"></a>draw_Bmp32x32</STRONG> (Thumb, 142 bytes, Stack size 64 bytes, lcd.o(.text.draw_Bmp32x32))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = draw_Bmp32x32 &rArr; draw_Pixel &rArr; lcdSetAddr
 </UL>
@@ -470,7 +470,7 @@ Global Symbols
 <LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_Pixel
 </UL>
 
-<P><STRONG><a name="[32]"></a>main</STRONG> (Thumb, 132 bytes, Stack size 8 bytes, main.o(.text.main))
+<P><STRONG><a name="[32]"></a>main</STRONG> (Thumb, 192 bytes, Stack size 8 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = main &rArr; draw_Bmp32x32 &rArr; draw_Pixel &rArr; lcdSetAddr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printS_5x7

@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>Tutorial7_SPI_P1</OutputName>
+          <OutputName>Qeustion3</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -417,6 +417,16 @@
               <FileName>LCD.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\Library\NUC1xx-LB_002\Source\LCD.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Header</GroupName>
+          <Files>
+            <File>
+              <FileName>Setup.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Setup.h</FilePath>
             </File>
           </Files>
         </Group>
