@@ -148,230 +148,247 @@ C:/Keil_v5/Library/NUC100Series/Include\NUC100Series.h(13625): warning: non-port
 #include "ACMP.h"
          ^~~~~~~~
          "acmp.h"
-main.c(27): warning: 'extern' variable has an initializer [-Wextern-initializer]
+main.c(33): warning: 'extern' variable has an initializer [-Wextern-initializer]
 extern unsigned char amogus[32*32] = {
                      ^
-main.c(27): warning: no previous extern declaration for non-static variable 'amogus' [-Wmissing-variable-declarations]
-main.c(27): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+main.c(33): warning: no previous extern declaration for non-static variable 'amogus' [-Wmissing-variable-declarations]
+main.c(33): note: declare 'static' if the variable is not intended to be used outside of this translation unit
 extern unsigned char amogus[32*32] = {
        ^
-main.c(36): warning: no previous extern declaration for non-static variable 'map' [-Wmissing-variable-declarations]
-        int map[8][8]={
-            ^
-main.c(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-        int map[8][8]={
-        ^
-main.c(57): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
+main.c(109): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
         PB->PMD &= (~(0x03<<30)); // enable GPB15 (the button)
                       ~~~~^ ~~
-main.c(60): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PC->DOUT &= ~(1<<6);            //SC3
-                 ~~ ^~~~~~~
-main.c(61): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PC->DOUT &= ~(1<<5);            //SC2
-                 ~~ ^~~~~~~
-main.c(62): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PC->DOUT &= ~(1<<4);            //SC1
-                 ~~ ^~~~~~~
-main.c(68): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-        PB->PMD &= ~(0b11 << 30);
-                     ^
-main.c(68): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
-        PB->PMD &= ~(0b11 << 30);
-                     ~~~~ ^  ~~
-main.c(70): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PB->OFFD &= ~(1 << 15);
-                 ~~ ^~~~~~~~~~
-main.c(71): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PB->DBEN &= ~(1 << 15);
-                 ~~ ^~~~~~~~~~
-main.c(73): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
-        PB->PMD &= (~(0x03 << 30)); // GPIOB.15 is configured as input
-                      ~~~~ ^  ~~
-main.c(74): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PB->IMD &= (~(1 << 15));                // Detect edge-trigger interrupt 
-                ~~  ^~~~~~~~~~
-main.c(93): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
-                                        printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
-                                        ~~~~~~~~~~ ^~~~~~
-main.c(93): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
-                                        printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
-                                        ~~~~~~~~~~         ^~~~~~
-main.c(95): error: expected ';' after expression
-                                else (map[i][j] == 1){
-                                                     ^
-                                                     ;
-main.c(95): warning: expression result unused [-Wunused-value]
-                                else (map[i][j] == 1){
-                                      ~~~~~~~~~ ^  ~
-main.c(96): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
-                                        printS_5x7(mapRow, mapCol, "X");        // Display "1" = "X"
-                                        ~~~~~~~~~~ ^~~~~~
-main.c(96): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
-                                        printS_5x7(mapRow, mapCol, "X");        // Display "1" = "X"
-                                        ~~~~~~~~~~         ^~~~~~
 main.c(112): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        PC->DOUT &= ~(1<<6);            
+                 ~~ ^~~~~~~
+main.c(113): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        PC->DOUT &= ~(1<<5);            
+                 ~~ ^~~~~~~
+main.c(114): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        PC->DOUT &= ~(1<<4);            
+                 ~~ ^~~~~~~
+main.c(140): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 19); //0: PLL input is HXT
                     ~~ ^~~~~~~~~~
-main.c(113): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(141): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 16); //PLL in normal mode
                     ~~ ^~~~~~~~~~
-main.c(114): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(142): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= (~(0x01FF << 0));
                     ~~  ^~~~~~~~~~~~~~
-main.c(116): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(144): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->PLLCON &= ~(1 << 18); //0: enable PLLOUT
                     ~~ ^~~~~~~~~~
-main.c(121): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(149): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKSEL0 &= (~(0x07 << 0));
                      ~~  ^~~~~~~~~~~~
-main.c(124): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(152): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKDIV &= (~0x0F << 0);
                     ~~  ~~~~~~^~~~
-main.c(133): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(161): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKSEL1 &= ~(0x03 << 2); // ADC clock source is 12 MHz
                      ~~ ^~~~~~~~~~~~
-main.c(134): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(162): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKDIV &= ~(0x0FF << 16);
                     ~~ ^~~~~~~~~~~~~~
-main.c(124): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
+main.c(152): warning: shifting a negative signed value is undefined [-Wshift-negative-value]
         CLK->CLKDIV &= (~0x0F << 0);
                         ~~~~~ ^
-main.c(146): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(177): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         PB->PMD &= ~(0b11 << 2);
                      ^
-main.c(146): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(177): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         PB->PMD &= ~(0b11 << 2);
                 ~~ ^~~~~~~~~~~~
-main.c(147): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(178): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         PB->PMD |= (0b01 << 2); // PB.1 is output pin
                     ^
-main.c(151): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(182): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         PB->PMD &= ~(0b11 << 0);        // Set Pin Mode for GPB.0(RX - Input)
                      ^
-main.c(151): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(182): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         PB->PMD &= ~(0b11 << 0);        // Set Pin Mode for GPB.0(RX - Input)
                 ~~ ^~~~~~~~~~~~
-main.c(154): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(185): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         UART0->LCR |= (0b11 << 0); // 8 data bit
                        ^
-main.c(155): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(186): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         UART0->LCR &= ~(1 << 2); // one stop bit        
                    ~~ ^~~~~~~~~
-main.c(156): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(187): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         UART0->LCR &= ~(1 << 3); // no parity bit
                    ~~ ^~~~~~~~~
-main.c(159): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(190): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         UART0->FCR &= ~(0xF << 16); // FIFO Trigger Level is 1 byte]
                    ~~ ^~~~~~~~~~~~
-main.c(163): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(194): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         UART0->BAUD &= ~(0b11 << 28); // mode 0 
                          ^
-main.c(163): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(194): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         UART0->BAUD &= ~(0b11 << 28); // mode 0 
                     ~~ ^~~~~~~~~~~~~
-main.c(164): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(195): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         UART0->BAUD &= ~(0xFFFF << 0);
                     ~~ ^~~~~~~~~~~~~~
-main.c(144): warning: no previous prototype for function 'UART0_Init' [-Wmissing-prototypes]
+main.c(175): warning: no previous prototype for function 'UART0_Init' [-Wmissing-prototypes]
 void UART0_Init(void) {
      ^
-main.c(144): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(175): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void UART0_Init(void) {
 ^
 static 
-main.c(178): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(213): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         CLK->CLKSEL1 &= ~(0x111 << 8);  
                      ~~ ^~~~~~~~~~~~~
-main.c(179): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(214): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         CLK->CLKSEL1 |= (0b010 << 8);                   // 12MHz
                          ^
-main.c(182): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(217): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         TIMER0->TCSR &= ~(0xFF << 0);                   // reset timer0
                      ~~ ^~~~~~~~~~~~
-main.c(185): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(220): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         TIMER0->TCSR &= ~(0b11 << 27);          // one-shot mode
                           ^
-main.c(185): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(220): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         TIMER0->TCSR &= ~(0b11 << 27);          // one-shot mode
                      ~~ ^~~~~~~~~~~~~
-main.c(186): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(221): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         TIMER0->TCSR |= (0b01 << 27);                   // timer operate at periodic mode
                          ^
-main.c(187): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(222): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         TIMER0->TCSR &= ~(1 << 24);                       // no effect
                      ~~ ^~~~~~~~~~
-main.c(200): warning: no previous prototype for function 'TMR0_IRQHandler' [-Wmissing-prototypes]
+main.c(243): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
+                                show_segment(0, bullets);
+                                ~~~~~~~~~~~~    ^~~~~~~
+main.c(260): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
+                                show_segment(coordinateFlag ,currentX);
+                                ~~~~~~~~~~~~ ^~~~~~~~~~~~~~
+main.c(260): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
+                                show_segment(coordinateFlag ,currentX);
+                                ~~~~~~~~~~~~                 ^~~~~~~~
+main.c(276): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
+                                show_segment(coordinateFlag ,currentY);
+                                ~~~~~~~~~~~~ ^~~~~~~~~~~~~~
+main.c(276): warning: implicit conversion loses integer precision: 'int' to 'unsigned char' [-Wimplicit-int-conversion]
+                                show_segment(coordinateFlag ,currentY);
+                                ~~~~~~~~~~~~                 ^~~~~~~~
+main.c(235): warning: no previous prototype for function 'TMR0_IRQHandler' [-Wmissing-prototypes]
 void TMR0_IRQHandler(void){
      ^
-main.c(200): note: declare 'static' if the function is not intended to be used outside of this translation unit
+main.c(235): note: declare 'static' if the function is not intended to be used outside of this translation unit
 void TMR0_IRQHandler(void){
 ^
 static 
-main.c(214): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(307): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 23); //0: disable variable clock feature
                     ~~ ^~~~~~~~~~
-main.c(215): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(308): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 22); //0: disable two bits transfer mode
                     ~~ ^~~~~~~~~~
-main.c(216): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(309): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 18); //0: select Master mode
                     ~~ ^~~~~~~~~~
-main.c(217): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(310): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 17); //0: disable SPI interrupt
                     ~~ ^~~~~~~~~~
-main.c(220): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(313): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(1 << 10); //0: MSB is sent first
                     ~~ ^~~~~~~~~~
-main.c(221): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(314): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         SPI3->CNTRL &= ~(0b11 << 8); //00: one transmit/receive word will be executed in one data transfer
                          ^
-main.c(221): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(314): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(0b11 << 8); //00: one transmit/receive word will be executed in one data transfer
                     ~~ ^~~~~~~~~~~~
-main.c(222): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+main.c(315): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
         SPI3->CNTRL &= ~(0b11111 << 3);
                          ^
-main.c(222): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(315): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->CNTRL &= ~(0b11111 << 3);
                     ~~ ^~~~~~~~~~~~~~~
-main.c(249): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(345): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->SSR &= ~(1 << 0);
                   ~~ ^~~~~~~~~
-main.c(258): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(354): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         SPI3->SSR &= ~(1 << 0);
                   ~~ ^~~~~~~~~
-main.c(274): warning: '&' within '|' [-Wbitwise-op-parentheses]
+main.c(370): warning: '&' within '|' [-Wbitwise-op-parentheses]
         LCD_command(0x10 | (ColumnAddr >> 4) & 0xF);
                          ~ ~~~~~~~~~~~~~~~~~~^~~~~
-main.c(274): note: place parentheses around the '&' expression to silence this warning
+main.c(370): note: place parentheses around the '&' expression to silence this warning
         LCD_command(0x10 | (ColumnAddr >> 4) & 0xF);
                                              ^
                            (                      )
-main.c(310): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PB->PMD &= ~(0x03<<22); 
-                ~~ ^~~~~~~~~~~
-main.c(314): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PC->PMD &= ~(0x03<<24);                 // Clear all bits before writing to it 
-                ~~ ^~~~~~~~~~~
-main.c(318): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
-        PB->PMD &= (~(0x03 << 30)); // GPIOB.15 is configured as input
+main.c(432): warning: 'sprintf' will always overflow; destination buffer has size 1, but format string expands to at least 2 [-Wfortify-source]
+                                sprintf(currentX_ch, "%d", currentX);
+                                ^
+main.c(436): warning: 'sprintf' will always overflow; destination buffer has size 1, but format string expands to at least 2 [-Wfortify-source]
+                                sprintf(currentY_ch, "%d", currentY);
+                                ^
+main.c(468): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
+        PB->PMD &= (~(0x03 << 30)); // Input
                       ~~~~ ^  ~~
-main.c(319): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
-        PB->IMD &= (~(1 << 15));                // Detect edge-trigger interrupt 
+main.c(469): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+        PB->IMD &= (~(1 << 15)); // Detect edge-trigger interrupt 
                 ~~  ^~~~~~~~~~
-main.c(324): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
-        NVIC->IP[0] &= (~(3 << 30));// Set GPIOB.15 interrupt priority to 0 (highest)
+main.c(473): warning: signed shift result (0xC0000000) sets the sign bit of the shift expression's type ('int') and becomes negative [-Wshift-sign-overflow]
+        NVIC->IP[0] &= (~(3 << 30)); // Set priority
                           ~ ^  ~~
-main.c(328): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+main.c(483): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
         GPIO->DBNCECON &= ~(0xF << 0);
                        ~~ ^~~~~~~~~~~
-main.c(329): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
-        GPIO->DBNCECON |= (0b0111 << 0);                // Sample interrupt input once per 128 clocks: 12MHz/128 = 93.75kHz
+main.c(484): warning: binary integer literals are a GNU extension [-Wgnu-binary-literal]
+        GPIO->DBNCECON |= (0b0111 << 0); // Sample interrupt input once per 128 clocks: 12MHz/128 = 93.75kHz
                            ^
-95 warnings and 1 error generated.
+main.c(513): warning: no previous prototype for function 'EINT1_IRQHandler' [-Wmissing-prototypes]
+void EINT1_IRQHandler(void) {
+     ^
+main.c(513): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void EINT1_IRQHandler(void) {
+^
+static 
+main.c(539): warning: declaration shadows a variable in the global scope [-Wshadow]
+void checkState(int state){
+                    ^
+main.c(63): note: previous declaration is here
+static int state = 0;
+           ^
+main.c(569): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+                                        printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
+                                        ~~~~~~~~~~ ^~~~~~
+main.c(569): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+                                        printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
+                                        ~~~~~~~~~~         ^~~~~~
+main.c(572): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+                                        printS_5x7(mapRow, mapCol, "x");        // Display "1" = "X"
+                                        ~~~~~~~~~~ ^~~~~~
+main.c(572): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+                                        printS_5x7(mapRow, mapCol, "x");        // Display "1" = "X"
+                                        ~~~~~~~~~~         ^~~~~~
+main.c(586): warning: no newline at end of file [-Wnewline-eof]
+}
+ ^
+main.c(25): warning: unused variable 'TimePassed' [-Wunused-variable]
+static int TimePassed = 0;                      // for tmr interrupt
+           ^
+main.c(39): warning: unused variable 'shots' [-Wunused-variable]
+static int shots = 15;
+           ^
+main.c(40): warning: unused variable 'shots_ch' [-Wunused-variable]
+static char shots_ch[4] = "0000";
+            ^
+main.c(82): warning: unused variable 'keypress_ch' [-Wunused-variable]
+static char keypress_ch[4] = "0000";
+            ^
+main.c(84): warning: unused variable 'coordinateModeName' [-Wunused-variable]
+static char coordinateModeName[2][2] = {"X", "Y"};
+            ^
+100 warnings generated.
 compiling main.c...
-".\Objects\Qeustion3.axf" - 1 Error(s), 95 Warning(s).
+linking...
+Program Size: Code=3960 RO-data=708 RW-data=1080 ZI-data=2184  
+".\Objects\Question3.axf" - 0 Error(s), 100 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -385,7 +402,6 @@ Package Vendor: Nuvoton
   C:\Users\cuong\AppData\Local\Arm\Packs\Nuvoton\NuMicro_DFP\1.3.16\Device\NUC100\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
 Build Time Elapsed:  00:00:02
 </pre>
 </body>

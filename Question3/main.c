@@ -4,8 +4,9 @@
 #include "LCD.h"
 #include <stdint.h>
 #include <math.h>
+#include <stdbool.h>
 
-#define TMR0_COUNTS 1000
+#define TMR0_COUNTS 100000
 #define HXT_STATUS 1<<0
 #define PLL_STATUS 1<<2
 
@@ -20,13 +21,82 @@ void SPI2_TX(unsigned char temp);
 
 void clr_segment(void);
 void show_segment(unsigned char n, unsigned char number);
-void enable_TMR0(void);
+void TIMER0_Config(void);
 static int TimePassed = 0;			// for tmr interrupt
+void GPIO_Config(void);
 
-extern unsigned char amogus[32*32] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xF8,0xFC,0xFE,0xFE,0x3E,0x3E,0x3C,0x38,0x70,0x40,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFE,0xFE,0xFF,0xFF,0xFF,0xFF,0xFF,0xFC,0xF8,0xF8,0xFC,0xFC,0xDC,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x7F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x0F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x40,0xC0,0xC0,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x98,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x9F,0x90,0x80,0x80,0x80,0x80,0x80,0x80,0x80};
-static int shots = 0;
+void checkState(int state);
+int getMatrixKey(void);
+void ScanAndDisplay(void);
+
+
+extern unsigned char amogus[32*32] = {
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x80,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x00,0x00,0x00,
+0xE0,0xF0,0xF0,0xF8,0xF8,0xF8,0xF8,0xFE,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xF3,0xF3,0xE3,0xE3,0xE1,0xE1,0xE1,0xE3,0xE3,0xE3,0xE3,0xE2,0xF4,0xBC,0x18,
+0x07,0x1F,0x1F,0x1F,0x1F,0x1F,0x3F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x3F,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x1F,0x03,0x00,
+0x00,0x00,0x00,0x00,0x01,0x01,0x01,0x01,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x03,0x01,0x01,0x01,0x01,0x01,0x00};
+
+static int shots = 15;
 static char shots_ch[4] = "0000";
 
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------MAP VARIABLE-----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+static int map[8][8]={
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0}
+};	
+
+/*
+0 = menu
+1 = map (playing)
+2 = end
+*/
+static int state = 0;
+static char state_ch[4] = "0000";
+static int mapRow = 2;
+static int mapCol = 0;
+
+static int currentX = 0; // To show the user current x or y
+static int currentY = 0;
+static char currentX_ch[1] = "0";
+static char currentY_ch[1] = "0";
+
+static int bullets = 0;
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------KEYPRESS MATRIX-----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+static int keypress; // to store the matrix 3x3 key presses
+static char keypress_ch[4] = "0000";
+static int coordinateMode = 0; // x for 0, y for 1
+static char coordinateModeName[2][2] = {"X", "Y"};
+static int coordinateFlag = 3; // represent the 7segment position
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------TIMER------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+static int segmentBit = 0;
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------MAIN-------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 int main(){
 
 	System_config();
@@ -34,37 +104,32 @@ int main(){
 	
 	LCD_start();
 	LCD_clear();
+	GPIO_Config();
 	
 	PB->PMD &= (~(0x03<<30)); // enable GPB15 (the button)
 	
-	PC->DOUT |= (1<<7);     //Logic 1 to turn on the digit
-	PC->DOUT &= ~(1<<6);		//SC3
-	PC->DOUT &= ~(1<<5);		//SC2
-	PC->DOUT &= ~(1<<4);		//SC1
+	PC->DOUT |= (1<<7);     
+	PC->DOUT &= ~(1<<6);		
+	PC->DOUT &= ~(1<<5);		
+	PC->DOUT &= ~(1<<4);		
 	
-	enable_TMR0();
-	/*
-	GPB15 shooting
-	*/
-	PB->PMD &= ~(0b11 << 30);
-	//PB->PMD |= 0b << 30; 
-	PB->OFFD &= ~(1 << 15);
-	PB->DBEN &= ~(1 << 15);
-	PB->DBEN |= (1 << 15); // debounce enable
-	PB->PMD &= (~(0x03 << 30)); // GPIOB.15 is configured as input
-	PB->IMD &= (~(1 << 15)); 		// Detect edge-trigger interrupt 
-	PB->IEN |= (1 << 15); 			// Enable interrupt (falling edge-trigger)
+	TIMER0_Config();
 	
-	while(1){																
+	while(1){		
+		ScanAndDisplay();
+
+	
 		
-		printS_5x7(4, 10, "Battleship");
-		printS_5x7(4, 18, "By hehe");
-		printS_5x7(4, 26, shots_ch);
-		//draw_Bmp32x32(4, 30, 1, 0, amogus); 
-		
-		
+		checkState(state);
+		CLK_SysTickDelay(1000);
 	}
 }
+
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------CLOCK CONFIG-----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
 void System_config(void){
 	SYS_UnlockReg(); // Unlock protected registers
@@ -101,8 +166,11 @@ void System_config(void){
 	SYS_LockReg();  // Lock protected registers 
 }
 
-
-// -----------------------UART0 config-----------------------
+/*
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------UART0 config-----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
 void UART0_Init(void) {
 	// UART0 pin configuration. PB.1 pin is for UART0 TX
@@ -127,17 +195,21 @@ void UART0_Init(void) {
 	UART0->BAUD &= ~(0xFFFF << 0);
 	UART0->BAUD |= 10;
     
-    // Enable UART0 receive interrupt
-    UART0->IER |= 1 << 0;
-    
-    // Enable NVIC UART0 IRQ
-    //NVIC_EnableIRQ(UART02_IRQn);
-		NVIC->ISER[0] |= 1 << 12;
+	// Enable UART0 receive interrupt
+	UART0->IER |= 1 << 0;
+	
+	// Enable NVIC UART0 IRQ
+	//NVIC_EnableIRQ(UART02_IRQn);
+	NVIC->ISER[0] |= 1 << 12;
 }
 
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------Timer0 configuration-----------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
-// -------------------------Timer0 configuration-----------------------------------------
-void enable_TMR0(void){
+void TIMER0_Config(void){
 	CLK->CLKSEL1 &= ~(0x111 << 8);	
 	CLK->CLKSEL1 |= (0b010 << 8);			// 12MHz
 	CLK->APBCLK |= (1 << 2);					// enable timer0
@@ -161,11 +233,69 @@ void enable_TMR0(void){
 
 // Timer0 interrupt - for time transition each 7Segment LED to avoid bouncing
 void TMR0_IRQHandler(void){
-	TimePassed = 1;						// Time taken/time delay to scan LEDs transition 
+
+	clr_segment(); 
 	TIMER0->TISR |= (1<<0);		// generate interrupt
+
+	switch(segmentBit){
+		case 0:
+			if(bullets < 10){
+				show_segment(0, bullets);
+			}
+			else if(bullets >= 10 && bullets < 16){
+				show_segment(0, bullets % 10);
+			}
+			segmentBit++;
+			break;
+		case 1:
+			clr_segment();
+			if(bullets >= 10){
+				show_segment(1, 1);
+			}
+			segmentBit++;
+			break;
+		case 2:
+			clr_segment();
+			if(coordinateMode == 0){
+				show_segment(coordinateFlag ,currentX);
+			}
+			else if(coordinateMode == 1){
+				PE->DOUT |= (1<<7);		//segment g
+				PE->DOUT |= (1<<5);		//segment d
+				PE->DOUT |= (1<<4);	//segment b
+				PE->DOUT |= (1<<3);		//segment a
+				PE->DOUT |= (1<<2);		//segment f
+				PE->DOUT |= (1<<1);	//DOT
+				PE->DOUT |= (1<<0);		// segment c
+			}
+			segmentBit++;
+			break;
+		case 3:
+			clr_segment();
+			if(coordinateMode == 1){
+				show_segment(coordinateFlag ,currentY);
+			}
+			else if(coordinateMode == 0){
+				PE->DOUT |= (1<<7);		//segment g
+				PE->DOUT |= (1<<5);		//segment d
+				PE->DOUT |= (1<<4);	//segment b
+				PE->DOUT |= (1<<3);		//segment a
+				PE->DOUT |= (1<<2);		//segment f
+				PE->DOUT |= (1<<1);	//DOT
+				PE->DOUT |= (1<<0);		// segment c
+			}
+			segmentBit = 0;
+			break;
+	}
+	
+	TIMER0->TISR |= (1<<0);		// Clear the flag by writing 1 to it
 }
+
+
 /*
-----------------------------SPI3--------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------SPI3--------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 void SPI3_config(void){
@@ -188,8 +318,11 @@ void SPI3_config(void){
 
 	SPI3->DIVIDER = 24; // SPI clock divider. SPI clock = HCLK / ((DIVIDER+1)*2)
 }
+
 /*
---------------LCD-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------LCD---------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
 void LCD_start(void)
@@ -239,7 +372,9 @@ void LCD_SetAddress(uint8_t PageAddr, uint8_t ColumnAddr)
 }
 
 /*
-----------------------------7SEGMENT-----------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------7SEGMENT-----------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 void clr_segment(void)
 {
@@ -264,11 +399,188 @@ void show_segment(unsigned char n, unsigned char number)
 	}
 	PC->DOUT |= (1<<(4+n));
 }
+
+void ScanAndDisplay(void){
+		keypress = getMatrixKey();
+		
+		if(keypress == 9){
+			/*
+			0 = x
+			1 = y
+			*/
+			if(coordinateMode == 0){
+				coordinateMode = 1;
+				coordinateFlag = 2;
+				clr_segment();
+				CLK_SysTickDelay(4500);
+				//show_segment(coordinateFlag ,0);
+			}
+			else if(coordinateMode == 1){
+				coordinateMode = 0;
+				coordinateFlag = 3;
+				clr_segment();
+				CLK_SysTickDelay(4500);
+				//show_segment(coordinateFlag ,0);
+			}
+		}
+		if(keypress != 0 && keypress != 9){
+			//keypress = lastkeypress;
+			clr_segment();
+			//show_segment(coordinateFlag ,keypress);
+			if(coordinateMode == 0){
+				currentX = keypress;
+				sprintf(currentX_ch, "%d", currentX);
+			}
+			else if(coordinateMode == 1){
+				currentY = keypress;
+				sprintf(currentY_ch, "%d", currentY);
+			}
+		}
+}
+
 /*
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------GPB15 AND KEYMATRIX------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
-void EINT1_IRQHandler(void){
+void GPIO_Config(void)	{
+	// SET PA 0-2 TO INPUT PULL UP (IMPORTANT), 3-5 TO OUTPUT
+	/*
+	PA->PMD &= (~(0x03 << 0)); 
+	PA->PMD &= (~(0x03 << 2)); 
+	PA->PMD &= (~(0x03 << 4)); 
+	
+	PA->PMD &= (~(0x03 << 6)); // 3
+	PA->PMD &= (~(0x03 << 8)); // 4
+	PA->PMD &= (~(0x03 << 10)); // 5
+	PA->PMD &= ((0x01 << 6));
+	PA->PMD &= ((0x01 << 8));
+	PA->PMD &= ((0x01 << 10));
+	*/
+	
+	GPIO_SetMode(PA, BIT0, GPIO_MODE_QUASI);
+	GPIO_SetMode(PA, BIT1, GPIO_MODE_QUASI);
+	GPIO_SetMode(PA, BIT2, GPIO_MODE_QUASI);
+	GPIO_SetMode(PA, BIT3, GPIO_MODE_QUASI);
+	GPIO_SetMode(PA, BIT4, GPIO_MODE_QUASI);
+	GPIO_SetMode(PA, BIT5, GPIO_MODE_QUASI);
+	
+	PB->PMD &= (~(0x03 << 30)); // Input
+	PB->IMD &= (~(1 << 15)); // Detect edge-trigger interrupt 
+	PB->IEN |= (1 << 15); // falling edge-trigger
+	
+	NVIC->ISER[0] |= 1 << 3; // Turn on interrupt
+	NVIC->IP[0] &= (~(3 << 30)); // Set priority
+	
+	// Debounce configuration
+	PB->DBEN |= (1<<15); // Initial Debounce
+	PA->DBEN |= (1<<0); // Initial Debounce
+	PA->DBEN |= (1<<2); // Initial Debounce
+	PA->DBEN |= (1<<4); // Initial Debounce
+	PA->DBEN |= (1<<6); // Initial Debounce
+	PA->DBEN |= (1<<8); // Initial Debounce
+	PA->DBEN |= (1<<10); // Initial Debounce
+	GPIO->DBNCECON &= ~(0xF << 0);
+	GPIO->DBNCECON |= (0b0111 << 0); // Sample interrupt input once per 128 clocks: 12MHz/128 = 93.75kHz
+	GPIO->DBNCECON |= (1<<4); // Debounce counter clock source is the internal 10kHz low speed oscillator 
 	
 }
 
+int getMatrixKey(void){
+	/*
+	The idea of this is to scan the rows and column
+	*/
+		PA0 = 1; PA1 = 1; PA2 = 0; PA3 = 1; PA4 = 1; PA5 = 1;
+	if (PA3 == 0) return 1;
+	if (PA4 == 0) return 4;
+	if (PA5 == 0) return 7;
+	PA0 = 1; PA1 = 0; PA2 = 1; PA3 = 1; PA4 = 1; PA5 = 1;
+	if (PA3 == 0) return 2;
+	if (PA4 == 0) return 5;
+	if (PA5 == 0) return 8;
+	PA0 = 0; PA1 = 1; PA2 = 1; PA3 = 1; PA4 = 1; PA5 = 1;
+	if (PA3 == 0) return 3;
+	if (PA4 == 0) return 6;
+	if (PA5 == 0) return 9;
+	return 0;
+}
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------INTERRUPT----------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
+void EINT1_IRQHandler(void) {
 
+	switch(state){
+		case 0:
+			state = 1;
+			LCD_clear();
+			break;
+		case 1:
+			if(bullets < 16){
+				bullets++;
+				break;
+			}
+			else if(bullets == 16){
+				state = 2;
+			}
+	}
+	
+	PB->ISRC |= (1 << 15);
+}
+
+/*
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------GAMELOGIC----------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+void checkState(int state){
+	if(state == 0){
+		goto menu;
+	}
+	else if(state == 1){
+		goto map;
+	}
+	else if(state == 2){
+		goto end;
+	}
+
+	menu:
+				printS_5x7(4, 10, "Battleship");
+				printS_5x7(4, 18, "By hehe");
+				printS_5x7(100, 26, state_ch);
+				draw_Bmp32x32(4, 30, 1, 0, amogus); 
+				CLK_SysTickDelay(1000000);
+				return;
+	
+	map:
+		CLK_SysTickDelay(500);	
+		printS_5x7(67, 32, "Current x:");
+		printS_5x7(120, 32, currentX_ch);
+		printS_5x7(67, 40, "Current y:");
+		printS_5x7(120, 40, currentY_ch);
+	
+		for (int i=0; i<8;i++){
+			for (int j=0; j<8;j++)
+			{
+				if (map[i][j] == 0) {
+					printS_5x7(mapRow, mapCol, "-");	// Display "0" = "-"
+				}
+				else if(map[i][j] == 1){
+					printS_5x7(mapRow, mapCol, "x");	// Display "1" = "X"
+				}
+				mapRow = mapRow+8;
+			}
+			mapCol = mapCol+8;
+			mapRow = 2;
+		}
+		return;
+	end:
+		CLK_SysTickDelay(10000);
+		clear_LCD();
+		clr_segment();
+		printS_5x7(67, 32, "gg");
+		return;
+}
