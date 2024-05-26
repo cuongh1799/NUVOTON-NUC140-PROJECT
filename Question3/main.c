@@ -554,6 +554,10 @@ void EINT1_IRQHandler(void) {
 			LCD_clear();
 			break;
 		case 1:
+			if(bullets >= 16){
+				state = 3;
+				break;
+			}
 			if(bullets < 16){
 				hitScan();
 				bullets++;
@@ -563,10 +567,7 @@ void EINT1_IRQHandler(void) {
 				
 				break;
 			}
-			else if(bullets >= 16){
-				state = 2;
-				break;
-			}
+			
 	}
 	
 	PB->ISRC |= (1 << 15);
@@ -612,7 +613,10 @@ void checkState(int state){
 		goto map;
 	}
 	else if(state == 2){
-		goto end;
+		goto win;
+	}
+	else if(state == 3){
+		goto lose;
 	}
 
 	menu:
@@ -653,10 +657,16 @@ void checkState(int state){
 			mapRow = 2;
 		}
 		return;
-	end:
+	win:
 		CLK_SysTickDelay(10000);
 		clear_LCD();
 		clr_segment();
-		printS_5x7(67, 32, "gg");
+		printS_5x7(20, 32, "gg you win");
+		return;
+	lose:
+		CLK_SysTickDelay(10000);
+		clear_LCD();
+		clr_segment();
+		printS_5x7(20, 32, "gg you lost");
 		return;
 }

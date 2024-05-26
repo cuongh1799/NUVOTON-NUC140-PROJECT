@@ -351,28 +351,28 @@ main.c(549): note: declare 'static' if the function is not intended to be used o
 void EINT1_IRQHandler(void) {
 ^
 static 
-main.c(581): warning: 'sprintf' will always overflow; destination buffer has size 1, but format string expands to at least 2 [-Wfortify-source]
+main.c(582): warning: 'sprintf' will always overflow; destination buffer has size 1, but format string expands to at least 2 [-Wfortify-source]
                         sprintf(score_ch, "%d", score);
                         ^
-main.c(607): warning: declaration shadows a variable in the global scope [-Wshadow]
+main.c(608): warning: declaration shadows a variable in the global scope [-Wshadow]
 void checkState(int state){
                     ^
 main.c(89): note: previous declaration is here
 static int state = 0;
            ^
-main.c(645): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+main.c(649): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
                                         printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
                                         ~~~~~~~~~~ ^~~~~~
-main.c(645): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+main.c(649): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
                                         printS_5x7(mapRow, mapCol, "-");        // Display "0" = "-"
                                         ~~~~~~~~~~         ^~~~~~
-main.c(648): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+main.c(652): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
                                         printS_5x7(mapRow, mapCol, "x");        // Display "1" = "X"
                                         ~~~~~~~~~~ ^~~~~~
-main.c(648): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
+main.c(652): warning: implicit conversion loses integer precision: 'int' to 'int16_t' (aka 'short') [-Wimplicit-int-conversion]
                                         printS_5x7(mapRow, mapCol, "x");        // Display "1" = "X"
                                         ~~~~~~~~~~         ^~~~~~
-main.c(662): warning: no newline at end of file [-Wnewline-eof]
+main.c(672): warning: no newline at end of file [-Wnewline-eof]
 }
  ^
 main.c(26): warning: unused variable 'TimePassed' [-Wunused-variable]
@@ -396,7 +396,7 @@ static char coordinateModeName[2][2] = {"X", "Y"};
 103 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=4200 RO-data=964 RW-data=1088 ZI-data=2440  
+Program Size: Code=4248 RO-data=964 RW-data=1088 ZI-data=2440  
 ".\Objects\Question3.axf" - 0 Error(s), 103 Warning(s).
 
 <h2>Software Packages used:</h2>
