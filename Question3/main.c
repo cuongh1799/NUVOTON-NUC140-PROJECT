@@ -12,7 +12,10 @@
 #define TMR0_COUNTS 100000
 #define HXT_STATUS 1<<0
 #define PLL_STATUS 1<<2
-
+volatile bool buzzFlag = false;					// Buzzer ON/OFF
+#define BUZZER_BEEP_TIME 10					   // Beep Time
+#define BUZZER_BEEP_DELAY 300000 
+void Buzzer_beep(int beep_time);
 void SPI3_config(void); // for the LCD
 void System_config(void);
 void LCD_start(void);
@@ -36,6 +39,9 @@ int getMatrixKey(void);
 void ScanAndDisplay(void);
 void hitScan(void); // scan if hit
 void appendChar(char *str, char c);
+void LoadMap(void);
+static bool mapLoaded = false;
+static bool alreadyBeep = false;
 
 
 int countShipSpot(void);
@@ -60,6 +66,12 @@ static char shots_ch[4] = "0000";
 when hits, change the hit spot to 1 in the `map_display`
 */
 
+
+static int indexX = 0;
+static int indexY = 0;	
+static bool uploadStatus = false;
+static char receivedData;
+static bool UART0_FLAG = 0;
 	
 static int map_display[8][8]={
 {0,0,0,0,0,0,0,0},
@@ -72,10 +84,9 @@ static int map_display[8][8]={
 {0,0,0,0,0,0,0,0}
 };
 
-// Both of this is use for the UART transfering... things
-// `uploadIndexIndex` should be Y, `uploadIndex` should be X
+
 static int uploadIndex= 0;
-static int uploadIndexIndex = 0;
+static char dataFromUART[8][8]; 
 
 static int map_ship[8][8]={
 {1,0,0,0,0,0,0,0},
@@ -156,13 +167,11 @@ int main(){
 	PC->DOUT &= ~(1<<5);		
 	PC->DOUT &= ~(1<<4);	
 
-	WinCon = countShipSpot();
-	sprintf(WinCon_ch, "%d", countShipSpot());	
-	
 	TIMER0_Config();
 	
-
-	while(1){		
+	while(1){	
+		WinCon = countShipSpot();
+		sprintf(WinCon_ch, "%d", countShipSpot());		
 		ScanAndDisplay();
 		checkState(state);
 		CLK_SysTickDelay(1000);
@@ -364,7 +373,7 @@ void SPI3_config(void){
 	SPI3->CNTRL &= ~(0b11 << 8); //00: one transmit/receive word will be executed in one data transfer
 	SPI3->CNTRL &= ~(0b11111 << 3);
 	SPI3->CNTRL |= 9 << 3; //9 bits/word
-	SPI3->CNTRL |= (1 << 2);  //1: Transmit at negative edge of SPI CLK
+	SPI3->CNTRL &= ~(1 << 2);  //1: Transmit at positive edge of SPI CLK
 
 	SPI3->DIVIDER = 24; // SPI clock divider. SPI clock = HCLK / ((DIVIDER+1)*2)
 }
@@ -507,6 +516,8 @@ void GPIO_Config(void)	{
 	PA->PMD &= ((0x01 << 8));
 	PA->PMD &= ((0x01 << 10));
 	*/
+	PB->PMD &= ~(0x03<<22);	
+	PB->PMD |= (0x01<<22);
 	
 	GPIO_SetMode(PA, BIT0, GPIO_MODE_QUASI);
 	GPIO_SetMode(PA, BIT1, GPIO_MODE_QUASI);
@@ -559,7 +570,7 @@ int getMatrixKey(void){
 }
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------INTERRUPT & SHOOTING----------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------INTERRUPT & SHOOTING & MAP LOADING----------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -599,24 +610,61 @@ void hitScan(void){
 			sprintf(score_ch, "%d", score);
 			for(int i = 0; i < 6; i++){
 				CLK_SysTickDelay(10000);
-				PC->DOUT ^= 1 << 12;
+				PC->DOUT ^= 1 << 12; // Toggle LED5 (GPC12)
+			}
+			// Flash LED5 three times
+			for(int i = 0; i < 3; i++) {
+				CLK_SysTickDelay(500000); // Delay for half a second
+				PC->DOUT ^= 1 << 12; // Toggle LED5 (GPC12)
+				CLK_SysTickDelay(500000); // Delay for half a second
+				PC->DOUT ^= 1 << 12; // Toggle LED5 (GPC12)
 			}
 		}
 	}
 }
 
 void UART02_IRQHandler(void) {
-    uint8_t receivedData;
-    
+
+	  
     // Check if interrupt is caused by received data available
     if (UART0->ISR & 1 << 8) {
-		
 			// Get data from RBR (Receive Buffer Register)
-			receivedData = UART0->RBR;		
+			receivedData = UART0->RBR;
+			/*
+			for (int i = 7; i >= 0; i--) {
+					uint8_t digit = (receivedData >> i) & 0b00000001;
+					map_display[dataCount][7-i] = digit;
+					printf("%d ", digit);
+			}
+			*/
 			UART0->THR = receivedData;
     }
+		UART0_FLAG = 1;
     // Clear the interrupt flags
     UART0->ISR = ~(1 << 8);
+}
+
+void LoadMap(void){	
+	if(UART0_FLAG == 1){
+				if (receivedData != ' ' && receivedData != '\n' && receivedData != '\r' && receivedData != '\t') {
+		if (receivedData == '1') {
+				map_display[indexY][indexX] = 1;
+		} else {
+				map_display[indexY][indexX] = 0;
+		}
+		indexX++;
+		if (indexX == 8) {
+			indexX = 0;
+			indexY++;
+		}
+		if (indexY == 8) {
+			uploadStatus = TRUE;
+			clear_LCD () ;
+		}
+	}
+		UART0_FLAG = 0;
+	}
+
 }
 
 /*
@@ -641,6 +689,11 @@ void checkState(int state){
 		goto menu;
 	}
 	else if(state == 1){
+		//if(!mapLoaded){
+			//LoadMap();
+			//mapLoaded = true;
+		//}
+
 		goto map;
 	}
 	else if(state == 2){
@@ -659,11 +712,22 @@ void checkState(int state){
 				return;
 	
 	map:
-		//CLK_SysTickDelay(500);	
-		//printS_5x7(67, 12, "Objects: ");
-		//printS_5x7(120, 12, WinCon_ch);
-		//printS_5x7(67, 12, strcat("Objects: ", WinCon_ch));
+	/*
+	FOR TESTING THESE ARE FOR DEBUGGING
+	*/
+	/*
+	printS_5x7(2, 5,  dataFromUART[0]);
+	printS_5x7(2, 10, dataFromUART[1]);
+	printS_5x7(2, 15, dataFromUART[2]);
+	printS_5x7(2, 20, dataFromUART[3]);
+	printS_5x7(2, 25, dataFromUART[4]);
+	printS_5x7(2, 30, dataFromUART[5]);
+	printS_5x7(2, 35, dataFromUART[6]);
+	printS_5x7(2, 40, dataFromUART[7]);
+	printS_5x7(2, 45, "meowmeo");
+	*/
 	
+		
 		printS_5x7(67, 20, "Score:");
 		printS_5x7(100, 20, score_ch);
 	
@@ -687,7 +751,9 @@ void checkState(int state){
 			mapCol = mapCol+8;
 			mapRow = 2;
 		}
+		
 		return;
+		
 	win:
 		CLK_SysTickDelay(10000);
 		clear_LCD();
@@ -697,17 +763,23 @@ void checkState(int state){
 	lose:
 		CLK_SysTickDelay(10000);
 		clear_LCD();
+		Buzzer_beep(BUZZER_BEEP_TIME);
 		clr_segment();
 		printS_5x7(20, 32, "gg you lost");
 		return;
 }
 
-int byteToInt(unsigned char byte) {
-    return (int)byte; // Typecast byte to int
+void CharArrToIntArr(int int_array[], char char_array[]){
+	for (int i = 0; i < 5; i++) {
+        int_array[i] = char_array[i] - '0';
+    }
 }
-
-void appendChar(char *str, char c) {
-    int len = strlen(str); // Find the length of the string
-    str[len] = c; // Append the character
-    str[len + 1] = '\0'; // Add the null terminator
+void Buzzer_beep(int beep_time){
+	if(alreadyBeep == false){
+		for (int i=0; i < beep_time; i++){
+		PB->DOUT ^= (1<<11);
+		CLK_SysTickDelay(BUZZER_BEEP_DELAY);
+	}
+	alreadyBeep = true;	
+	}
 }
