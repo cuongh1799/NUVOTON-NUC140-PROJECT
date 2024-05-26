@@ -31,11 +31,15 @@ Section Cross References
     main.o(.text.main) refers to main.o(.text.LCD_start) for LCD_start
     main.o(.text.main) refers to main.o(.text.LCD_clear) for LCD_clear
     main.o(.text.main) refers to main.o(.text.GPIO_Config) for GPIO_Config
+    main.o(.text.main) refers to main.o(.text.countShipSpot) for countShipSpot
+    main.o(.text.main) refers to noretval__2sprintf.o(.text) for __2sprintf
     main.o(.text.main) refers to main.o(.text.TIMER0_Config) for TIMER0_Config
     main.o(.text.main) refers to main.o(.text.ScanAndDisplay) for ScanAndDisplay
     main.o(.text.main) refers to main.o(.text.checkState) for checkState
     main.o(.text.main) refers to main.o(.text.CLK_SysTickDelay) for CLK_SysTickDelay
-    main.o(.text.main) refers to main.o(.bss..L_MergedGlobals.8) for [Anonymous Symbol]
+    main.o(.text.main) refers to main.o(.bss..L_MergedGlobals.9) for [Anonymous Symbol]
+    main.o(.text.main) refers to main.o(.data.WinCon_ch) for [Anonymous Symbol]
+    main.o(.text.main) refers to main.o(.rodata.str1.1) for .L.str
     main.o(.ARM.exidx.text.main) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.ARM.exidx.text.main) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.ARM.exidx.text.main) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
@@ -79,6 +83,14 @@ Section Cross References
     main.o(.ARM.exidx.text.GPIO_Config) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.ARM.exidx.text.GPIO_Config) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.ARM.exidx.text.GPIO_Config) refers to main.o(.text.GPIO_Config) for [Anonymous Symbol]
+    main.o(.text.countShipSpot) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.text.countShipSpot) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.text.countShipSpot) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.text.countShipSpot) refers to main.o(.rodata.map_ship) for [Anonymous Symbol]
+    main.o(.ARM.exidx.text.countShipSpot) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.ARM.exidx.text.countShipSpot) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.ARM.exidx.text.countShipSpot) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.ARM.exidx.text.countShipSpot) refers to main.o(.text.countShipSpot) for [Anonymous Symbol]
     main.o(.text.TIMER0_Config) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.text.TIMER0_Config) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.text.TIMER0_Config) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
@@ -93,7 +105,7 @@ Section Cross References
     main.o(.text.ScanAndDisplay) refers to main.o(.text.clr_segment) for clr_segment
     main.o(.text.ScanAndDisplay) refers to main.o(.text.CLK_SysTickDelay) for CLK_SysTickDelay
     main.o(.text.ScanAndDisplay) refers to noretval__2sprintf.o(.text) for __2sprintf
-    main.o(.text.ScanAndDisplay) refers to main.o(.bss..L_MergedGlobals.8) for [Anonymous Symbol]
+    main.o(.text.ScanAndDisplay) refers to main.o(.bss..L_MergedGlobals.9) for [Anonymous Symbol]
     main.o(.text.ScanAndDisplay) refers to main.o(.data..L_MergedGlobals) for [Anonymous Symbol]
     main.o(.text.ScanAndDisplay) refers to main.o(.rodata.str1.1) for .L.str
     main.o(.ARM.exidx.text.ScanAndDisplay) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
@@ -109,6 +121,7 @@ Section Cross References
     main.o(.text.checkState) refers to lcd.o(.text.printS_5x7) for printS_5x7
     main.o(.text.checkState) refers to lcd.o(.text.draw_Bmp32x32) for draw_Bmp32x32
     main.o(.text.checkState) refers to main.o(.data..L_MergedGlobals) for [Anonymous Symbol]
+    main.o(.text.checkState) refers to main.o(.bss.map_display) for [Anonymous Symbol]
     main.o(.text.checkState) refers to main.o(.bss.mapCol) for [Anonymous Symbol]
     main.o(.text.checkState) refers to main.o(.data.amogus) for amogus
     main.o(.ARM.exidx.text.checkState) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
@@ -136,7 +149,8 @@ Section Cross References
     main.o(.text.TMR0_IRQHandler) refers to main.o(.text.clr_segment) for clr_segment
     main.o(.text.TMR0_IRQHandler) refers to aeabi_sdiv.o(.text) for __aeabi_uidivmod
     main.o(.text.TMR0_IRQHandler) refers to main.o(.text.show_segment) for show_segment
-    main.o(.text.TMR0_IRQHandler) refers to main.o(.bss..L_MergedGlobals.8) for [Anonymous Symbol]
+    main.o(.text.TMR0_IRQHandler) refers to main.o(.bss..L_MergedGlobals.9) for [Anonymous Symbol]
+    main.o(.text.TMR0_IRQHandler) refers to main.o(.data..L_MergedGlobals) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.TMR0_IRQHandler) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.ARM.exidx.text.TMR0_IRQHandler) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.ARM.exidx.text.TMR0_IRQHandler) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
@@ -188,17 +202,41 @@ Section Cross References
     main.o(.text.EINT1_IRQHandler) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.text.EINT1_IRQHandler) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.text.EINT1_IRQHandler) refers to main.o(.text.LCD_clear) for LCD_clear
-    main.o(.text.EINT1_IRQHandler) refers to main.o(.bss..L_MergedGlobals.8) for [Anonymous Symbol]
+    main.o(.text.EINT1_IRQHandler) refers to main.o(.text.hitScan) for hitScan
+    main.o(.text.EINT1_IRQHandler) refers to main.o(.bss..L_MergedGlobals.9) for [Anonymous Symbol]
     main.o(.ARM.exidx.text.EINT1_IRQHandler) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.ARM.exidx.text.EINT1_IRQHandler) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.ARM.exidx.text.EINT1_IRQHandler) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.ARM.exidx.text.EINT1_IRQHandler) refers to main.o(.text.EINT1_IRQHandler) for [Anonymous Symbol]
+    main.o(.text.hitScan) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.text.hitScan) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.text.hitScan) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.text.hitScan) refers to noretval__2sprintf.o(.text) for __2sprintf
+    main.o(.text.hitScan) refers to main.o(.text.CLK_SysTickDelay) for CLK_SysTickDelay
+    main.o(.text.hitScan) refers to main.o(.data..L_MergedGlobals) for [Anonymous Symbol]
+    main.o(.text.hitScan) refers to main.o(.rodata.map_ship) for [Anonymous Symbol]
+    main.o(.text.hitScan) refers to main.o(.bss.map_display) for [Anonymous Symbol]
+    main.o(.text.hitScan) refers to main.o(.bss..L_MergedGlobals.9) for [Anonymous Symbol]
+    main.o(.text.hitScan) refers to main.o(.rodata.str1.1) for .L.str
+    main.o(.ARM.exidx.text.hitScan) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.ARM.exidx.text.hitScan) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.ARM.exidx.text.hitScan) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.ARM.exidx.text.hitScan) refers to main.o(.text.hitScan) for [Anonymous Symbol]
     main.o(.data.amogus) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.data.amogus) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.data.amogus) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.data.WinCon_ch) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.data.WinCon_ch) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.data.WinCon_ch) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.rodata.str1.1) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.rodata.str1.1) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.rodata.str1.1) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.rodata.map_ship) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.rodata.map_ship) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.rodata.map_ship) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.bss.map_display) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.bss.map_display) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.bss.map_display) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     main.o(.bss.mapCol) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.bss.mapCol) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.bss.mapCol) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
@@ -208,9 +246,9 @@ Section Cross References
     main.o(.data..L_MergedGlobals) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
     main.o(.data..L_MergedGlobals) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
     main.o(.data..L_MergedGlobals) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
-    main.o(.bss..L_MergedGlobals.8) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
-    main.o(.bss..L_MergedGlobals.8) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
-    main.o(.bss..L_MergedGlobals.8) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
+    main.o(.bss..L_MergedGlobals.9) refers (Special) to _printf_d.o(.ARM.Collect$$_printf_percent$$00000009) for _printf_d
+    main.o(.bss..L_MergedGlobals.9) refers (Special) to _printf_dec.o(.text) for _printf_int_dec
+    main.o(.bss..L_MergedGlobals.9) refers (Special) to _printf_percent.o(.ARM.Collect$$_printf_percent$$00000000) for _printf_percent
     spi.o(.text.SPI_Open) refers to clk.o(.text.CLK_GetHCLKFreq) for CLK_GetHCLKFreq
     spi.o(.text.SPI_Open) refers to spi.o(.text.CLK_GetPLLClockFreq) for CLK_GetPLLClockFreq
     spi.o(.text.SPI_Open) refers to aeabi_sdiv.o(.text) for __aeabi_uidiv
@@ -495,6 +533,7 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.LCD_start), (8 bytes).
     Removing main.o(.ARM.exidx.text.LCD_clear), (8 bytes).
     Removing main.o(.ARM.exidx.text.GPIO_Config), (8 bytes).
+    Removing main.o(.ARM.exidx.text.countShipSpot), (8 bytes).
     Removing main.o(.ARM.exidx.text.TIMER0_Config), (8 bytes).
     Removing main.o(.ARM.exidx.text.ScanAndDisplay), (8 bytes).
     Removing main.o(.ARM.exidx.text.checkState), (8 bytes).
@@ -509,6 +548,7 @@ Removing Unused input sections from the image.
     Removing main.o(.ARM.exidx.text.LCD_SetAddress), (8 bytes).
     Removing main.o(.ARM.exidx.text.getMatrixKey), (8 bytes).
     Removing main.o(.ARM.exidx.text.EINT1_IRQHandler), (8 bytes).
+    Removing main.o(.ARM.exidx.text.hitScan), (8 bytes).
     Removing main.o(.ARM.use_no_argv), (4 bytes).
     Removing spi.o(.text), (0 bytes).
     Removing spi.o(.text.SPI_Open), (368 bytes).
@@ -645,7 +685,7 @@ Removing Unused input sections from the image.
     Removing lcd.o(.ARM.exidx.text.draw_LCD), (8 bytes).
     Removing lcd.o(.data.Font8x16), (1520 bytes).
 
-160 unused section(s) (total 7260 bytes) removed from the image.
+162 unused section(s) (total 7276 bytes) removed from the image.
 
 ==============================================================================
 
@@ -811,96 +851,115 @@ Image Symbol Table
     .text                                    0x000005ea   Section        0  __dczerorl2.o(.text)
     CLK_SysTickDelay                         0x00000641   Thumb Code    36  main.o(.text.CLK_SysTickDelay)
     [Anonymous Symbol]                       0x00000640   Section        0  main.o(.text.CLK_SysTickDelay)
-    __arm_cp.9_0                             0x0000065c   Number         4  main.o(.text.CLK_SysTickDelay)
-    __arm_cp.9_1                             0x00000660   Number         4  main.o(.text.CLK_SysTickDelay)
+    __arm_cp.10_0                            0x0000065c   Number         4  main.o(.text.CLK_SysTickDelay)
+    __arm_cp.10_1                            0x00000660   Number         4  main.o(.text.CLK_SysTickDelay)
     [Anonymous Symbol]                       0x00000664   Section        0  main.o(.text.EINT1_IRQHandler)
-    __arm_cp.18_1                            0x000006a0   Number         4  main.o(.text.EINT1_IRQHandler)
-    [Anonymous Symbol]                       0x000006a4   Section        0  main.o(.text.GPIO_Config)
-    __arm_cp.5_0                             0x0000075c   Number         4  main.o(.text.GPIO_Config)
-    __arm_cp.5_1                             0x00000760   Number         4  main.o(.text.GPIO_Config)
-    __arm_cp.5_2                             0x00000764   Number         4  main.o(.text.GPIO_Config)
-    __arm_cp.5_4                             0x00000768   Number         4  main.o(.text.GPIO_Config)
-    __arm_cp.5_5                             0x0000076c   Number         4  main.o(.text.GPIO_Config)
-    [Anonymous Symbol]                       0x00000770   Section        0  gpio.o(.text.GPIO_SetMode)
-    [Anonymous Symbol]                       0x0000079c   Section        0  main.o(.text.LCD_SetAddress)
-    [Anonymous Symbol]                       0x000007b8   Section        0  main.o(.text.LCD_clear)
-    [Anonymous Symbol]                       0x000007d8   Section        0  main.o(.text.LCD_command)
-    [Anonymous Symbol]                       0x000007f8   Section        0  main.o(.text.LCD_data)
-    [Anonymous Symbol]                       0x0000081c   Section        0  main.o(.text.LCD_start)
-    __arm_cp.3_0                             0x00000840   Number         4  main.o(.text.LCD_start)
-    [Anonymous Symbol]                       0x00000844   Section        0  main.o(.text.SPI3_config)
-    __arm_cp.2_0                             0x000008bc   Number         4  main.o(.text.SPI3_config)
-    __arm_cp.2_1                             0x000008c0   Number         4  main.o(.text.SPI3_config)
-    [Anonymous Symbol]                       0x000008c4   Section        0  main.o(.text.ScanAndDisplay)
-    __arm_cp.7_0                             0x00000914   Number         4  main.o(.text.ScanAndDisplay)
-    __arm_cp.7_1                             0x00000918   Number         4  main.o(.text.ScanAndDisplay)
-    __arm_cp.7_3                             0x0000091c   Number         4  main.o(.text.ScanAndDisplay)
-    [Anonymous Symbol]                       0x00000920   Section        0  system_nuc100series.o(.text.SystemInit)
-    [Anonymous Symbol]                       0x00000924   Section        0  main.o(.text.System_config)
-    __arm_cp.1_0                             0x000009d0   Number         4  main.o(.text.System_config)
-    __arm_cp.1_2                             0x000009d4   Number         4  main.o(.text.System_config)
-    [Anonymous Symbol]                       0x000009d8   Section        0  main.o(.text.TIMER0_Config)
-    __arm_cp.6_0                             0x00000a40   Number         4  main.o(.text.TIMER0_Config)
-    __arm_cp.6_1                             0x00000a44   Number         4  main.o(.text.TIMER0_Config)
-    __arm_cp.6_2                             0x00000a48   Number         4  main.o(.text.TIMER0_Config)
-    __arm_cp.6_3                             0x00000a4c   Number         4  main.o(.text.TIMER0_Config)
-    __arm_cp.6_4                             0x00000a50   Number         4  main.o(.text.TIMER0_Config)
-    [Anonymous Symbol]                       0x00000a54   Section        0  main.o(.text.TMR0_IRQHandler)
-    __arm_cp.11_0                            0x00000b64   Number         4  main.o(.text.TMR0_IRQHandler)
-    __arm_cp.11_1                            0x00000b68   Number         4  main.o(.text.TMR0_IRQHandler)
-    __arm_cp.11_2                            0x00000b6c   Number         4  main.o(.text.TMR0_IRQHandler)
-    [Anonymous Symbol]                       0x00000b70   Section        0  main.o(.text.checkState)
-    __arm_cp.8_1                             0x00000c48   Number         4  main.o(.text.checkState)
-    __arm_cp.8_2                             0x00000c4c   Number         4  main.o(.text.checkState)
-    __arm_cp.8_4                             0x00000c5c   Number         4  main.o(.text.checkState)
-    __arm_cp.8_6                             0x00000c64   Number         4  main.o(.text.checkState)
-    __arm_cp.8_10                            0x00000c80   Number         4  main.o(.text.checkState)
-    __arm_cp.8_11                            0x00000c84   Number         4  main.o(.text.checkState)
-    [Anonymous Symbol]                       0x00000c88   Section        0  lcd.o(.text.clear_LCD)
-    [Anonymous Symbol]                       0x00000cd0   Section        0  main.o(.text.clr_segment)
-    [Anonymous Symbol]                       0x00000ce8   Section        0  lcd.o(.text.draw_Bmp32x32)
-    [Anonymous Symbol]                       0x00000d78   Section        0  lcd.o(.text.draw_Pixel)
-    __arm_cp.12_0                            0x00000dc8   Number         4  lcd.o(.text.draw_Pixel)
-    [Anonymous Symbol]                       0x00000dcc   Section        0  main.o(.text.getMatrixKey)
-    __arm_cp.17_0                            0x00000e54   Number         4  main.o(.text.getMatrixKey)
-    [Anonymous Symbol]                       0x00000e58   Section        0  lcd.o(.text.lcdSetAddr)
-    [Anonymous Symbol]                       0x00000ec4   Section        0  lcd.o(.text.lcdWriteData)
-    __arm_cp.2_0                             0x00000ef0   Number         4  lcd.o(.text.lcdWriteData)
-    [Anonymous Symbol]                       0x00000ef4   Section        0  main.o(.text.main)
-    __arm_cp.0_1                             0x00000f54   Number         4  main.o(.text.main)
-    [Anonymous Symbol]                       0x00000f58   Section        0  lcd.o(.text.printC_5x7)
-    __arm_cp.7_0                             0x00000fb0   Number         4  lcd.o(.text.printC_5x7)
-    [Anonymous Symbol]                       0x00000fb4   Section        0  lcd.o(.text.printS_5x7)
-    [Anonymous Symbol]                       0x00000fdc   Section        0  main.o(.text.show_segment)
-    __arm_cp.13_1                            0x00001030   Number         4  main.o(.text.show_segment)
-    __arm_cp.13_2                            0x00001034   Number         4  main.o(.text.show_segment)
-    Font5x7                                  0x00001038   Data         480  lcd.o(.rodata.Font5x7)
-    [Anonymous Symbol]                       0x00001038   Section        0  lcd.o(.rodata.Font5x7)
-    .L.str                                   0x00001218   Data           3  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x00001218   Section        0  main.o(.rodata.str1.1)
+    __arm_cp.19_1                            0x000006a8   Number         4  main.o(.text.EINT1_IRQHandler)
+    [Anonymous Symbol]                       0x000006ac   Section        0  main.o(.text.GPIO_Config)
+    __arm_cp.5_0                             0x00000774   Number         4  main.o(.text.GPIO_Config)
+    __arm_cp.5_1                             0x00000778   Number         4  main.o(.text.GPIO_Config)
+    __arm_cp.5_2                             0x0000077c   Number         4  main.o(.text.GPIO_Config)
+    __arm_cp.5_3                             0x00000780   Number         4  main.o(.text.GPIO_Config)
+    __arm_cp.5_5                             0x00000784   Number         4  main.o(.text.GPIO_Config)
+    __arm_cp.5_6                             0x00000788   Number         4  main.o(.text.GPIO_Config)
+    [Anonymous Symbol]                       0x0000078c   Section        0  gpio.o(.text.GPIO_SetMode)
+    [Anonymous Symbol]                       0x000007b8   Section        0  main.o(.text.LCD_SetAddress)
+    [Anonymous Symbol]                       0x000007d4   Section        0  main.o(.text.LCD_clear)
+    [Anonymous Symbol]                       0x000007f4   Section        0  main.o(.text.LCD_command)
+    [Anonymous Symbol]                       0x00000814   Section        0  main.o(.text.LCD_data)
+    [Anonymous Symbol]                       0x00000838   Section        0  main.o(.text.LCD_start)
+    __arm_cp.3_0                             0x0000085c   Number         4  main.o(.text.LCD_start)
+    [Anonymous Symbol]                       0x00000860   Section        0  main.o(.text.SPI3_config)
+    __arm_cp.2_0                             0x000008d8   Number         4  main.o(.text.SPI3_config)
+    __arm_cp.2_1                             0x000008dc   Number         4  main.o(.text.SPI3_config)
+    [Anonymous Symbol]                       0x000008e0   Section        0  main.o(.text.ScanAndDisplay)
+    __arm_cp.8_0                             0x00000930   Number         4  main.o(.text.ScanAndDisplay)
+    __arm_cp.8_1                             0x00000934   Number         4  main.o(.text.ScanAndDisplay)
+    __arm_cp.8_3                             0x00000938   Number         4  main.o(.text.ScanAndDisplay)
+    [Anonymous Symbol]                       0x0000093c   Section        0  system_nuc100series.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x00000940   Section        0  main.o(.text.System_config)
+    __arm_cp.1_0                             0x000009ec   Number         4  main.o(.text.System_config)
+    __arm_cp.1_2                             0x000009f0   Number         4  main.o(.text.System_config)
+    [Anonymous Symbol]                       0x000009f4   Section        0  main.o(.text.TIMER0_Config)
+    __arm_cp.7_0                             0x00000a5c   Number         4  main.o(.text.TIMER0_Config)
+    __arm_cp.7_1                             0x00000a60   Number         4  main.o(.text.TIMER0_Config)
+    __arm_cp.7_2                             0x00000a64   Number         4  main.o(.text.TIMER0_Config)
+    __arm_cp.7_3                             0x00000a68   Number         4  main.o(.text.TIMER0_Config)
+    __arm_cp.7_4                             0x00000a6c   Number         4  main.o(.text.TIMER0_Config)
+    [Anonymous Symbol]                       0x00000a70   Section        0  main.o(.text.TMR0_IRQHandler)
+    __arm_cp.12_0                            0x00000b84   Number         4  main.o(.text.TMR0_IRQHandler)
+    __arm_cp.12_1                            0x00000b88   Number         4  main.o(.text.TMR0_IRQHandler)
+    __arm_cp.12_2                            0x00000b8c   Number         4  main.o(.text.TMR0_IRQHandler)
+    [Anonymous Symbol]                       0x00000b90   Section        0  main.o(.text.checkState)
+    __arm_cp.9_1                             0x00000c78   Number         4  main.o(.text.checkState)
+    __arm_cp.9_2                             0x00000c7c   Number         4  main.o(.text.checkState)
+    __arm_cp.9_5                             0x00000c98   Number         4  main.o(.text.checkState)
+    __arm_cp.9_8                             0x00000ca4   Number         4  main.o(.text.checkState)
+    __arm_cp.9_9                             0x00000ca8   Number         4  main.o(.text.checkState)
+    __arm_cp.9_13                            0x00000cc4   Number         4  main.o(.text.checkState)
+    __arm_cp.9_14                            0x00000cc8   Number         4  main.o(.text.checkState)
+    [Anonymous Symbol]                       0x00000ccc   Section        0  lcd.o(.text.clear_LCD)
+    [Anonymous Symbol]                       0x00000d14   Section        0  main.o(.text.clr_segment)
+    [Anonymous Symbol]                       0x00000d2c   Section        0  main.o(.text.countShipSpot)
+    [Anonymous Symbol]                       0x00000d54   Section        0  lcd.o(.text.draw_Bmp32x32)
+    [Anonymous Symbol]                       0x00000de4   Section        0  lcd.o(.text.draw_Pixel)
+    __arm_cp.12_0                            0x00000e34   Number         4  lcd.o(.text.draw_Pixel)
+    [Anonymous Symbol]                       0x00000e38   Section        0  main.o(.text.getMatrixKey)
+    __arm_cp.18_0                            0x00000ec0   Number         4  main.o(.text.getMatrixKey)
+    [Anonymous Symbol]                       0x00000ec4   Section        0  main.o(.text.hitScan)
+    __arm_cp.20_0                            0x00000f1c   Number         4  main.o(.text.hitScan)
+    __arm_cp.20_1                            0x00000f20   Number         4  main.o(.text.hitScan)
+    __arm_cp.20_2                            0x00000f24   Number         4  main.o(.text.hitScan)
+    __arm_cp.20_6                            0x00000f28   Number         4  main.o(.text.hitScan)
+    [Anonymous Symbol]                       0x00000f2c   Section        0  lcd.o(.text.lcdSetAddr)
+    [Anonymous Symbol]                       0x00000f98   Section        0  lcd.o(.text.lcdWriteData)
+    __arm_cp.2_0                             0x00000fc4   Number         4  lcd.o(.text.lcdWriteData)
+    [Anonymous Symbol]                       0x00000fc8   Section        0  main.o(.text.main)
+    __arm_cp.0_0                             0x00001038   Number         4  main.o(.text.main)
+    __arm_cp.0_1                             0x0000103c   Number         4  main.o(.text.main)
+    __arm_cp.0_2                             0x00001040   Number         4  main.o(.text.main)
+    __arm_cp.0_3                             0x00001044   Number         4  main.o(.text.main)
+    [Anonymous Symbol]                       0x00001048   Section        0  lcd.o(.text.printC_5x7)
+    __arm_cp.7_0                             0x000010a0   Number         4  lcd.o(.text.printC_5x7)
+    [Anonymous Symbol]                       0x000010a4   Section        0  lcd.o(.text.printS_5x7)
+    [Anonymous Symbol]                       0x000010cc   Section        0  main.o(.text.show_segment)
+    __arm_cp.14_1                            0x00001120   Number         4  main.o(.text.show_segment)
+    __arm_cp.14_2                            0x00001124   Number         4  main.o(.text.show_segment)
+    Font5x7                                  0x00001128   Data         480  lcd.o(.rodata.Font5x7)
+    [Anonymous Symbol]                       0x00001128   Section        0  lcd.o(.rodata.Font5x7)
+    map_ship                                 0x00001308   Data         256  main.o(.rodata.map_ship)
+    [Anonymous Symbol]                       0x00001308   Section        0  main.o(.rodata.map_ship)
+    .L.str                                   0x00001408   Data           3  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x00001408   Section        0  main.o(.rodata.str1.1)
     [Anonymous Symbol]                       0x20000000   Section        0  system_nuc100series.o(.data..L_MergedGlobals)
     currentX_ch                              0x2000002c   Data           1  main.o(.data..L_MergedGlobals)
     [Anonymous Symbol]                       0x2000002c   Section        0  main.o(.data..L_MergedGlobals)
     currentY_ch                              0x2000002d   Data           1  main.o(.data..L_MergedGlobals)
-    state_ch                                 0x2000002e   Data           4  main.o(.data..L_MergedGlobals)
-    mapRow                                   0x20000034   Data           4  main.o(.data..L_MergedGlobals)
-    .bss                                     0x20000438   Section       96  libspace.o(.bss)
-    coordinateMode                           0x20000498   Data           1  main.o(.bss..L_MergedGlobals.8)
-    [Anonymous Symbol]                       0x20000498   Section        0  main.o(.bss..L_MergedGlobals.8)
-    coordinateFlag                           0x2000049c   Data           1  main.o(.bss..L_MergedGlobals.8)
-    state                                    0x200004a0   Data           4  main.o(.bss..L_MergedGlobals.8)
-    segmentBit                               0x200004a4   Data           4  main.o(.bss..L_MergedGlobals.8)
-    bullets                                  0x200004a8   Data           4  main.o(.bss..L_MergedGlobals.8)
-    currentX                                 0x200004ac   Data           4  main.o(.bss..L_MergedGlobals.8)
-    currentY                                 0x200004b0   Data           4  main.o(.bss..L_MergedGlobals.8)
-    keypress                                 0x200004b4   Data           4  main.o(.bss..L_MergedGlobals.8)
-    mapCol                                   0x200008b8   Data           4  main.o(.bss.mapCol)
-    [Anonymous Symbol]                       0x200008b8   Section        0  main.o(.bss.mapCol)
-    Heap_Mem                                 0x200008c0   Data           0  startup_nuc100series.o(HEAP)
-    Stack_Mem                                0x200008c0   Data        1024  startup_nuc100series.o(STACK)
-    HEAP                                     0x200008c0   Section        0  startup_nuc100series.o(HEAP)
-    STACK                                    0x200008c0   Section     1024  startup_nuc100series.o(STACK)
-    __initial_sp                             0x20000cc0   Data           0  startup_nuc100series.o(STACK)
+    score_ch                                 0x2000002e   Data           1  main.o(.data..L_MergedGlobals)
+    currentX                                 0x20000030   Data           4  main.o(.data..L_MergedGlobals)
+    currentY                                 0x20000034   Data           4  main.o(.data..L_MergedGlobals)
+    mapRow                                   0x20000038   Data           4  main.o(.data..L_MergedGlobals)
+    WinCon_ch                                0x2000003c   Data           4  main.o(.data.WinCon_ch)
+    [Anonymous Symbol]                       0x2000003c   Section        0  main.o(.data.WinCon_ch)
+    .bss                                     0x20000440   Section       96  libspace.o(.bss)
+    coordinateMode                           0x200004a0   Data           1  main.o(.bss..L_MergedGlobals.9)
+    [Anonymous Symbol]                       0x200004a0   Section        0  main.o(.bss..L_MergedGlobals.9)
+    coordinateFlag                           0x200004a4   Data           1  main.o(.bss..L_MergedGlobals.9)
+    WinCon                                   0x200004a8   Data           4  main.o(.bss..L_MergedGlobals.9)
+    state                                    0x200004ac   Data           4  main.o(.bss..L_MergedGlobals.9)
+    segmentBit                               0x200004b0   Data           4  main.o(.bss..L_MergedGlobals.9)
+    bullets                                  0x200004b4   Data           4  main.o(.bss..L_MergedGlobals.9)
+    keypress                                 0x200004b8   Data           4  main.o(.bss..L_MergedGlobals.9)
+    score                                    0x200004bc   Data           4  main.o(.bss..L_MergedGlobals.9)
+    mapCol                                   0x200008c0   Data           4  main.o(.bss.mapCol)
+    [Anonymous Symbol]                       0x200008c0   Section        0  main.o(.bss.mapCol)
+    map_display                              0x200008c4   Data         256  main.o(.bss.map_display)
+    [Anonymous Symbol]                       0x200008c4   Section        0  main.o(.bss.map_display)
+    Heap_Mem                                 0x200009c8   Data           0  startup_nuc100series.o(HEAP)
+    Stack_Mem                                0x200009c8   Data        1024  startup_nuc100series.o(STACK)
+    HEAP                                     0x200009c8   Section        0  startup_nuc100series.o(HEAP)
+    STACK                                    0x200009c8   Section     1024  startup_nuc100series.o(STACK)
+    __initial_sp                             0x20000dc8   Data           0  startup_nuc100series.o(STACK)
 
     Global Symbols
 
@@ -1052,42 +1111,44 @@ Image Symbol Table
     __decompress                             0x000005eb   Thumb Code     0  __dczerorl2.o(.text)
     __decompress1                            0x000005eb   Thumb Code    86  __dczerorl2.o(.text)
     __semihosting_library_function           0x000005eb   Thumb Code     0  indicate_semi.o(.text)
-    EINT1_IRQHandler                         0x00000665   Thumb Code    64  main.o(.text.EINT1_IRQHandler)
-    GPIO_Config                              0x000006a5   Thumb Code   204  main.o(.text.GPIO_Config)
-    GPIO_SetMode                             0x00000771   Thumb Code    42  gpio.o(.text.GPIO_SetMode)
-    LCD_SetAddress                           0x0000079d   Thumb Code    28  main.o(.text.LCD_SetAddress)
-    LCD_clear                                0x000007b9   Thumb Code    30  main.o(.text.LCD_clear)
-    LCD_command                              0x000007d9   Thumb Code    32  main.o(.text.LCD_command)
-    LCD_data                                 0x000007f9   Thumb Code    36  main.o(.text.LCD_data)
-    LCD_start                                0x0000081d   Thumb Code    40  main.o(.text.LCD_start)
-    SPI3_config                              0x00000845   Thumb Code   128  main.o(.text.SPI3_config)
-    ScanAndDisplay                           0x000008c5   Thumb Code    92  main.o(.text.ScanAndDisplay)
-    SystemInit                               0x00000921   Thumb Code     2  system_nuc100series.o(.text.SystemInit)
-    System_config                            0x00000925   Thumb Code   180  main.o(.text.System_config)
-    TIMER0_Config                            0x000009d9   Thumb Code   124  main.o(.text.TIMER0_Config)
-    TMR0_IRQHandler                          0x00000a55   Thumb Code   284  main.o(.text.TMR0_IRQHandler)
-    checkState                               0x00000b71   Thumb Code   280  main.o(.text.checkState)
-    clear_LCD                                0x00000c89   Thumb Code    72  lcd.o(.text.clear_LCD)
-    clr_segment                              0x00000cd1   Thumb Code    24  main.o(.text.clr_segment)
-    draw_Bmp32x32                            0x00000ce9   Thumb Code   142  lcd.o(.text.draw_Bmp32x32)
-    draw_Pixel                               0x00000d79   Thumb Code    84  lcd.o(.text.draw_Pixel)
-    getMatrixKey                             0x00000dcd   Thumb Code   140  main.o(.text.getMatrixKey)
-    lcdSetAddr                               0x00000e59   Thumb Code   108  lcd.o(.text.lcdSetAddr)
-    lcdWriteData                             0x00000ec5   Thumb Code    48  lcd.o(.text.lcdWriteData)
-    main                                     0x00000ef5   Thumb Code   100  main.o(.text.main)
-    printC_5x7                               0x00000f59   Thumb Code    92  lcd.o(.text.printC_5x7)
-    printS_5x7                               0x00000fb5   Thumb Code    40  lcd.o(.text.printS_5x7)
-    show_segment                             0x00000fdd   Thumb Code    92  main.o(.text.show_segment)
-    Region$$Table$$Base                      0x0000121c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000123c   Number         0  anon$$obj.o(Region$$Table)
+    EINT1_IRQHandler                         0x00000665   Thumb Code    72  main.o(.text.EINT1_IRQHandler)
+    GPIO_Config                              0x000006ad   Thumb Code   224  main.o(.text.GPIO_Config)
+    GPIO_SetMode                             0x0000078d   Thumb Code    42  gpio.o(.text.GPIO_SetMode)
+    LCD_SetAddress                           0x000007b9   Thumb Code    28  main.o(.text.LCD_SetAddress)
+    LCD_clear                                0x000007d5   Thumb Code    30  main.o(.text.LCD_clear)
+    LCD_command                              0x000007f5   Thumb Code    32  main.o(.text.LCD_command)
+    LCD_data                                 0x00000815   Thumb Code    36  main.o(.text.LCD_data)
+    LCD_start                                0x00000839   Thumb Code    40  main.o(.text.LCD_start)
+    SPI3_config                              0x00000861   Thumb Code   128  main.o(.text.SPI3_config)
+    ScanAndDisplay                           0x000008e1   Thumb Code    92  main.o(.text.ScanAndDisplay)
+    SystemInit                               0x0000093d   Thumb Code     2  system_nuc100series.o(.text.SystemInit)
+    System_config                            0x00000941   Thumb Code   180  main.o(.text.System_config)
+    TIMER0_Config                            0x000009f5   Thumb Code   124  main.o(.text.TIMER0_Config)
+    TMR0_IRQHandler                          0x00000a71   Thumb Code   288  main.o(.text.TMR0_IRQHandler)
+    checkState                               0x00000b91   Thumb Code   316  main.o(.text.checkState)
+    clear_LCD                                0x00000ccd   Thumb Code    72  lcd.o(.text.clear_LCD)
+    clr_segment                              0x00000d15   Thumb Code    24  main.o(.text.clr_segment)
+    countShipSpot                            0x00000d2d   Thumb Code    40  main.o(.text.countShipSpot)
+    draw_Bmp32x32                            0x00000d55   Thumb Code   142  lcd.o(.text.draw_Bmp32x32)
+    draw_Pixel                               0x00000de5   Thumb Code    84  lcd.o(.text.draw_Pixel)
+    getMatrixKey                             0x00000e39   Thumb Code   140  main.o(.text.getMatrixKey)
+    hitScan                                  0x00000ec5   Thumb Code   104  main.o(.text.hitScan)
+    lcdSetAddr                               0x00000f2d   Thumb Code   108  lcd.o(.text.lcdSetAddr)
+    lcdWriteData                             0x00000f99   Thumb Code    48  lcd.o(.text.lcdWriteData)
+    main                                     0x00000fc9   Thumb Code   128  main.o(.text.main)
+    printC_5x7                               0x00001049   Thumb Code    92  lcd.o(.text.printC_5x7)
+    printS_5x7                               0x000010a5   Thumb Code    40  lcd.o(.text.printS_5x7)
+    show_segment                             0x000010cd   Thumb Code    92  main.o(.text.show_segment)
+    Region$$Table$$Base                      0x0000140c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000142c   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_nuc100series.o(.data..L_MergedGlobals)
     CyclesPerUs                              0x20000004   Data           4  system_nuc100series.o(.data..L_MergedGlobals)
     PllClock                                 0x20000008   Data           4  system_nuc100series.o(.data..L_MergedGlobals)
     gau32ClkSrcTbl                           0x2000000c   Data          32  system_nuc100series.o(.data..L_MergedGlobals)
-    amogus                                   0x20000038   Data        1024  main.o(.data.amogus)
-    __libspace_start                         0x20000438   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x20000498   Data           0  libspace.o(.bss)
-    DisplayBuffer                            0x200004b8   Data        1024  lcd.o(.bss.DisplayBuffer)
+    amogus                                   0x20000040   Data        1024  main.o(.data.amogus)
+    __libspace_start                         0x20000440   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x200004a0   Data           0  libspace.o(.bss)
+    DisplayBuffer                            0x200004c0   Data        1024  lcd.o(.bss.DisplayBuffer)
 
 
 
@@ -1097,137 +1158,142 @@ Memory Map of the image
 
   Image Entry point : 0x00000159
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x00001674, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x0000129c])
+  Load Region LR_1 (Base: 0x00000000, Size: 0x0000186c, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00001494])
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000123c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000142c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x000000c0   Data   RO           16    RESET               startup_nuc100series.o
-    0x000000c0   0x000000c0   0x00000008   Code   RO          287  * !!!main             c_p.l(__main.o)
-    0x000000c8   0x000000c8   0x0000003c   Code   RO          475    !!!scatter          c_p.l(__scatter.o)
-    0x00000104   0x00000104   0x0000001c   Code   RO          477    !!handler_zi        c_p.l(__scatter_zi.o)
-    0x00000120   0x00000120   0x00000002   Code   RO          278    .ARM.Collect$$_printf_percent$$00000000  c_p.l(_printf_percent.o)
-    0x00000122   0x00000122   0x0000000a   Code   RO          277    .ARM.Collect$$_printf_percent$$00000009  c_p.l(_printf_d.o)
-    0x0000012c   0x0000012c   0x00000004   Code   RO          300    .ARM.Collect$$_printf_percent$$00000017  c_p.l(_printf_percent_end.o)
-    0x00000130   0x00000130   0x00000002   Code   RO          336    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          350    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          352    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          355    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          357    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          359    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          362    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          364    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          366    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          368    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          370    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          372    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          374    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          376    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          378    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          380    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          382    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          386    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          388    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          390    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000000   Code   RO          392    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
-    0x00000132   0x00000132   0x00000002   Code   RO          393    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
-    0x00000134   0x00000134   0x00000002   Code   RO          428    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          456    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          458    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          461    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          464    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          466    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000000   Code   RO          469    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
-    0x00000136   0x00000136   0x00000002   Code   RO          470    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
-    0x00000138   0x00000138   0x00000000   Code   RO          289    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
-    0x00000138   0x00000138   0x00000000   Code   RO          304    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
-    0x00000138   0x00000138   0x00000006   Code   RO          316    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
-    0x0000013e   0x0000013e   0x00000000   Code   RO          306    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
-    0x0000013e   0x0000013e   0x00000004   Code   RO          307    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
-    0x00000142   0x00000142   0x00000000   Code   RO          309    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
-    0x00000142   0x00000142   0x00000008   Code   RO          310    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
-    0x0000014a   0x0000014a   0x00000002   Code   RO          341    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
-    0x0000014c   0x0000014c   0x00000000   Code   RO          399    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
-    0x0000014c   0x0000014c   0x00000004   Code   RO          400    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
-    0x00000150   0x00000150   0x00000006   Code   RO          401    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
+    0x000000c0   0x000000c0   0x00000008   Code   RO          294  * !!!main             c_p.l(__main.o)
+    0x000000c8   0x000000c8   0x0000003c   Code   RO          482    !!!scatter          c_p.l(__scatter.o)
+    0x00000104   0x00000104   0x0000001c   Code   RO          484    !!handler_zi        c_p.l(__scatter_zi.o)
+    0x00000120   0x00000120   0x00000002   Code   RO          285    .ARM.Collect$$_printf_percent$$00000000  c_p.l(_printf_percent.o)
+    0x00000122   0x00000122   0x0000000a   Code   RO          284    .ARM.Collect$$_printf_percent$$00000009  c_p.l(_printf_d.o)
+    0x0000012c   0x0000012c   0x00000004   Code   RO          307    .ARM.Collect$$_printf_percent$$00000017  c_p.l(_printf_percent_end.o)
+    0x00000130   0x00000130   0x00000002   Code   RO          343    .ARM.Collect$$libinit$$00000000  c_p.l(libinit.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          357    .ARM.Collect$$libinit$$00000002  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          359    .ARM.Collect$$libinit$$00000004  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          362    .ARM.Collect$$libinit$$0000000A  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          364    .ARM.Collect$$libinit$$0000000C  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          366    .ARM.Collect$$libinit$$0000000E  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          369    .ARM.Collect$$libinit$$00000011  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          371    .ARM.Collect$$libinit$$00000013  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          373    .ARM.Collect$$libinit$$00000015  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          375    .ARM.Collect$$libinit$$00000017  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          377    .ARM.Collect$$libinit$$00000019  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          379    .ARM.Collect$$libinit$$0000001B  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          381    .ARM.Collect$$libinit$$0000001D  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          383    .ARM.Collect$$libinit$$0000001F  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          385    .ARM.Collect$$libinit$$00000021  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          387    .ARM.Collect$$libinit$$00000023  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          389    .ARM.Collect$$libinit$$00000025  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          393    .ARM.Collect$$libinit$$0000002C  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          395    .ARM.Collect$$libinit$$0000002E  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          397    .ARM.Collect$$libinit$$00000030  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000000   Code   RO          399    .ARM.Collect$$libinit$$00000032  c_p.l(libinit2.o)
+    0x00000132   0x00000132   0x00000002   Code   RO          400    .ARM.Collect$$libinit$$00000033  c_p.l(libinit2.o)
+    0x00000134   0x00000134   0x00000002   Code   RO          435    .ARM.Collect$$libshutdown$$00000000  c_p.l(libshutdown.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          463    .ARM.Collect$$libshutdown$$00000002  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          465    .ARM.Collect$$libshutdown$$00000004  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          468    .ARM.Collect$$libshutdown$$00000007  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          471    .ARM.Collect$$libshutdown$$0000000A  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          473    .ARM.Collect$$libshutdown$$0000000C  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000000   Code   RO          476    .ARM.Collect$$libshutdown$$0000000F  c_p.l(libshutdown2.o)
+    0x00000136   0x00000136   0x00000002   Code   RO          477    .ARM.Collect$$libshutdown$$00000010  c_p.l(libshutdown2.o)
+    0x00000138   0x00000138   0x00000000   Code   RO          296    .ARM.Collect$$rtentry$$00000000  c_p.l(__rtentry.o)
+    0x00000138   0x00000138   0x00000000   Code   RO          311    .ARM.Collect$$rtentry$$00000002  c_p.l(__rtentry2.o)
+    0x00000138   0x00000138   0x00000006   Code   RO          323    .ARM.Collect$$rtentry$$00000004  c_p.l(__rtentry4.o)
+    0x0000013e   0x0000013e   0x00000000   Code   RO          313    .ARM.Collect$$rtentry$$00000009  c_p.l(__rtentry2.o)
+    0x0000013e   0x0000013e   0x00000004   Code   RO          314    .ARM.Collect$$rtentry$$0000000A  c_p.l(__rtentry2.o)
+    0x00000142   0x00000142   0x00000000   Code   RO          316    .ARM.Collect$$rtentry$$0000000C  c_p.l(__rtentry2.o)
+    0x00000142   0x00000142   0x00000008   Code   RO          317    .ARM.Collect$$rtentry$$0000000D  c_p.l(__rtentry2.o)
+    0x0000014a   0x0000014a   0x00000002   Code   RO          348    .ARM.Collect$$rtexit$$00000000  c_p.l(rtexit.o)
+    0x0000014c   0x0000014c   0x00000000   Code   RO          406    .ARM.Collect$$rtexit$$00000002  c_p.l(rtexit2.o)
+    0x0000014c   0x0000014c   0x00000004   Code   RO          407    .ARM.Collect$$rtexit$$00000003  c_p.l(rtexit2.o)
+    0x00000150   0x00000150   0x00000006   Code   RO          408    .ARM.Collect$$rtexit$$00000004  c_p.l(rtexit2.o)
     0x00000156   0x00000156   0x00000002   PAD
     0x00000158   0x00000158   0x00000064   Code   RO           17  * .text               startup_nuc100series.o
-    0x000001bc   0x000001bc   0x00000028   Code   RO          251    .text               c_p.l(noretval__2sprintf.o)
-    0x000001e4   0x000001e4   0x0000006c   Code   RO          253    .text               c_p.l(__printf.o)
-    0x00000250   0x00000250   0x0000006c   Code   RO          255    .text               c_p.l(_printf_dec.o)
-    0x000002bc   0x000002bc   0x00000044   Code   RO          279    .text               c_p.l(strlen.o)
-    0x00000300   0x00000300   0x0000016c   Code   RO          281    .text               c_p.l(aeabi_sdiv.o)
-    0x0000046c   0x0000046c   0x00000006   Code   RO          285    .text               c_p.l(heapauxi.o)
-    0x00000472   0x00000472   0x000000b0   Code   RO          294    .text               c_p.l(_printf_intcommon.o)
+    0x000001bc   0x000001bc   0x00000028   Code   RO          258    .text               c_p.l(noretval__2sprintf.o)
+    0x000001e4   0x000001e4   0x0000006c   Code   RO          260    .text               c_p.l(__printf.o)
+    0x00000250   0x00000250   0x0000006c   Code   RO          262    .text               c_p.l(_printf_dec.o)
+    0x000002bc   0x000002bc   0x00000044   Code   RO          286    .text               c_p.l(strlen.o)
+    0x00000300   0x00000300   0x0000016c   Code   RO          288    .text               c_p.l(aeabi_sdiv.o)
+    0x0000046c   0x0000046c   0x00000006   Code   RO          292    .text               c_p.l(heapauxi.o)
+    0x00000472   0x00000472   0x000000b0   Code   RO          301    .text               c_p.l(_printf_intcommon.o)
     0x00000522   0x00000522   0x00000002   PAD
-    0x00000524   0x00000524   0x00000030   Code   RO          296    .text               c_p.l(_printf_char_common.o)
-    0x00000554   0x00000554   0x0000000a   Code   RO          298    .text               c_p.l(_sputc.o)
-    0x0000055e   0x0000055e   0x00000028   Code   RO          301    .text               c_p.l(rtudiv10.o)
-    0x00000586   0x00000586   0x0000003e   Code   RO          322    .text               c_p.l(sys_stackheap_outer.o)
-    0x000005c4   0x000005c4   0x00000010   Code   RO          325    .text               c_p.l(exit.o)
-    0x000005d4   0x000005d4   0x00000008   Code   RO          337    .text               c_p.l(libspace.o)
-    0x000005dc   0x000005dc   0x0000000c   Code   RO          394    .text               c_p.l(sys_exit.o)
-    0x000005e8   0x000005e8   0x00000002   Code   RO          417    .text               c_p.l(use_no_semi.o)
-    0x000005ea   0x000005ea   0x00000000   Code   RO          419    .text               c_p.l(indicate_semi.o)
-    0x000005ea   0x000005ea   0x00000056   Code   RO          473    .text               c_p.l(__dczerorl2.o)
-    0x00000640   0x00000640   0x00000024   Code   RO           42    .text.CLK_SysTickDelay  main.o
-    0x00000664   0x00000664   0x00000040   Code   RO           60    .text.EINT1_IRQHandler  main.o
-    0x000006a4   0x000006a4   0x000000cc   Code   RO           34    .text.GPIO_Config   main.o
-    0x00000770   0x00000770   0x0000002a   Code   RO          116    .text.GPIO_SetMode  gpio.o
-    0x0000079a   0x0000079a   0x00000002   PAD
-    0x0000079c   0x0000079c   0x0000001c   Code   RO           56    .text.LCD_SetAddress  main.o
-    0x000007b8   0x000007b8   0x0000001e   Code   RO           32    .text.LCD_clear     main.o
-    0x000007d6   0x000007d6   0x00000002   PAD
-    0x000007d8   0x000007d8   0x00000020   Code   RO           52    .text.LCD_command   main.o
-    0x000007f8   0x000007f8   0x00000024   Code   RO           54    .text.LCD_data      main.o
-    0x0000081c   0x0000081c   0x00000028   Code   RO           30    .text.LCD_start     main.o
-    0x00000844   0x00000844   0x00000080   Code   RO           28    .text.SPI3_config   main.o
-    0x000008c4   0x000008c4   0x0000005c   Code   RO           38    .text.ScanAndDisplay  main.o
-    0x00000920   0x00000920   0x00000002   Code   RO            4    .text.SystemInit    system_nuc100series.o
-    0x00000922   0x00000922   0x00000002   PAD
-    0x00000924   0x00000924   0x000000b4   Code   RO           26    .text.System_config  main.o
-    0x000009d8   0x000009d8   0x0000007c   Code   RO           36    .text.TIMER0_Config  main.o
-    0x00000a54   0x00000a54   0x0000011c   Code   RO           46    .text.TMR0_IRQHandler  main.o
-    0x00000b70   0x00000b70   0x00000118   Code   RO           40    .text.checkState    main.o
-    0x00000c88   0x00000c88   0x00000048   Code   RO          189    .text.clear_LCD     lcd.o
-    0x00000cd0   0x00000cd0   0x00000018   Code   RO           48    .text.clr_segment   main.o
-    0x00000ce8   0x00000ce8   0x0000008e   Code   RO          227    .text.draw_Bmp32x32  lcd.o
-    0x00000d76   0x00000d76   0x00000002   PAD
-    0x00000d78   0x00000d78   0x00000054   Code   RO          203    .text.draw_Pixel    lcd.o
-    0x00000dcc   0x00000dcc   0x0000008c   Code   RO           58    .text.getMatrixKey  main.o
-    0x00000e58   0x00000e58   0x0000006c   Code   RO          185    .text.lcdSetAddr    lcd.o
-    0x00000ec4   0x00000ec4   0x00000030   Code   RO          183    .text.lcdWriteData  lcd.o
-    0x00000ef4   0x00000ef4   0x00000064   Code   RO           24    .text.main          main.o
-    0x00000f58   0x00000f58   0x0000005c   Code   RO          193    .text.printC_5x7    lcd.o
-    0x00000fb4   0x00000fb4   0x00000028   Code   RO          199    .text.printS_5x7    lcd.o
-    0x00000fdc   0x00000fdc   0x0000005c   Code   RO           50    .text.show_segment  main.o
-    0x00001038   0x00001038   0x000001e0   Data   RO          239    .rodata.Font5x7     lcd.o
-    0x00001218   0x00001218   0x00000003   Data   RO           63    .rodata.str1.1      main.o
-    0x0000121b   0x0000121b   0x00000001   PAD
-    0x0000121c   0x0000121c   0x00000020   Data   RO          472    Region$$Table       anon$$obj.o
+    0x00000524   0x00000524   0x00000030   Code   RO          303    .text               c_p.l(_printf_char_common.o)
+    0x00000554   0x00000554   0x0000000a   Code   RO          305    .text               c_p.l(_sputc.o)
+    0x0000055e   0x0000055e   0x00000028   Code   RO          308    .text               c_p.l(rtudiv10.o)
+    0x00000586   0x00000586   0x0000003e   Code   RO          329    .text               c_p.l(sys_stackheap_outer.o)
+    0x000005c4   0x000005c4   0x00000010   Code   RO          332    .text               c_p.l(exit.o)
+    0x000005d4   0x000005d4   0x00000008   Code   RO          344    .text               c_p.l(libspace.o)
+    0x000005dc   0x000005dc   0x0000000c   Code   RO          401    .text               c_p.l(sys_exit.o)
+    0x000005e8   0x000005e8   0x00000002   Code   RO          424    .text               c_p.l(use_no_semi.o)
+    0x000005ea   0x000005ea   0x00000000   Code   RO          426    .text               c_p.l(indicate_semi.o)
+    0x000005ea   0x000005ea   0x00000056   Code   RO          480    .text               c_p.l(__dczerorl2.o)
+    0x00000640   0x00000640   0x00000024   Code   RO           44    .text.CLK_SysTickDelay  main.o
+    0x00000664   0x00000664   0x00000048   Code   RO           62    .text.EINT1_IRQHandler  main.o
+    0x000006ac   0x000006ac   0x000000e0   Code   RO           34    .text.GPIO_Config   main.o
+    0x0000078c   0x0000078c   0x0000002a   Code   RO          123    .text.GPIO_SetMode  gpio.o
+    0x000007b6   0x000007b6   0x00000002   PAD
+    0x000007b8   0x000007b8   0x0000001c   Code   RO           58    .text.LCD_SetAddress  main.o
+    0x000007d4   0x000007d4   0x0000001e   Code   RO           32    .text.LCD_clear     main.o
+    0x000007f2   0x000007f2   0x00000002   PAD
+    0x000007f4   0x000007f4   0x00000020   Code   RO           54    .text.LCD_command   main.o
+    0x00000814   0x00000814   0x00000024   Code   RO           56    .text.LCD_data      main.o
+    0x00000838   0x00000838   0x00000028   Code   RO           30    .text.LCD_start     main.o
+    0x00000860   0x00000860   0x00000080   Code   RO           28    .text.SPI3_config   main.o
+    0x000008e0   0x000008e0   0x0000005c   Code   RO           40    .text.ScanAndDisplay  main.o
+    0x0000093c   0x0000093c   0x00000002   Code   RO            4    .text.SystemInit    system_nuc100series.o
+    0x0000093e   0x0000093e   0x00000002   PAD
+    0x00000940   0x00000940   0x000000b4   Code   RO           26    .text.System_config  main.o
+    0x000009f4   0x000009f4   0x0000007c   Code   RO           38    .text.TIMER0_Config  main.o
+    0x00000a70   0x00000a70   0x00000120   Code   RO           48    .text.TMR0_IRQHandler  main.o
+    0x00000b90   0x00000b90   0x0000013c   Code   RO           42    .text.checkState    main.o
+    0x00000ccc   0x00000ccc   0x00000048   Code   RO          196    .text.clear_LCD     lcd.o
+    0x00000d14   0x00000d14   0x00000018   Code   RO           50    .text.clr_segment   main.o
+    0x00000d2c   0x00000d2c   0x00000028   Code   RO           36    .text.countShipSpot  main.o
+    0x00000d54   0x00000d54   0x0000008e   Code   RO          234    .text.draw_Bmp32x32  lcd.o
+    0x00000de2   0x00000de2   0x00000002   PAD
+    0x00000de4   0x00000de4   0x00000054   Code   RO          210    .text.draw_Pixel    lcd.o
+    0x00000e38   0x00000e38   0x0000008c   Code   RO           60    .text.getMatrixKey  main.o
+    0x00000ec4   0x00000ec4   0x00000068   Code   RO           64    .text.hitScan       main.o
+    0x00000f2c   0x00000f2c   0x0000006c   Code   RO          192    .text.lcdSetAddr    lcd.o
+    0x00000f98   0x00000f98   0x00000030   Code   RO          190    .text.lcdWriteData  lcd.o
+    0x00000fc8   0x00000fc8   0x00000080   Code   RO           24    .text.main          main.o
+    0x00001048   0x00001048   0x0000005c   Code   RO          200    .text.printC_5x7    lcd.o
+    0x000010a4   0x000010a4   0x00000028   Code   RO          206    .text.printS_5x7    lcd.o
+    0x000010cc   0x000010cc   0x0000005c   Code   RO           52    .text.show_segment  main.o
+    0x00001128   0x00001128   0x000001e0   Data   RO          246    .rodata.Font5x7     lcd.o
+    0x00001308   0x00001308   0x00000100   Data   RO           69    .rodata.map_ship    main.o
+    0x00001408   0x00001408   0x00000003   Data   RO           68    .rodata.str1.1      main.o
+    0x0000140b   0x0000140b   0x00000001   PAD
+    0x0000140c   0x0000140c   0x00000020   Data   RO          479    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000123c, Size: 0x00000438, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00000060])
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0000142c, Size: 0x00000440, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00000068])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   COMPRESSED   0x0000002c   Data   RW            6    .data..L_MergedGlobals  system_nuc100series.o
-    0x2000002c   COMPRESSED   0x0000000c   Data   RW           66    .data..L_MergedGlobals  main.o
-    0x20000038   COMPRESSED   0x00000400   Data   RW           62    .data.amogus        main.o
+    0x2000002c   COMPRESSED   0x00000010   Data   RW           73    .data..L_MergedGlobals  main.o
+    0x2000003c   COMPRESSED   0x00000004   Data   RW           67    .data.WinCon_ch     main.o
+    0x20000040   COMPRESSED   0x00000400   Data   RW           66    .data.amogus        main.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000438, Load base: 0x0000129c, Size: 0x00000888, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000440, Load base: 0x00001494, Size: 0x00000988, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000438        -       0x00000060   Zero   RW          338    .bss                c_p.l(libspace.o)
-    0x20000498        -       0x00000020   Zero   RW           67    .bss..L_MergedGlobals.8  main.o
-    0x200004b8        -       0x00000400   Zero   RW          238    .bss.DisplayBuffer  lcd.o
-    0x200008b8        -       0x00000004   Zero   RW           64    .bss.mapCol         main.o
-    0x200008bc   0x0000129c   0x00000004   PAD
-    0x200008c0        -       0x00000000   Zero   RW           15    HEAP                startup_nuc100series.o
-    0x200008c0        -       0x00000400   Zero   RW           14    STACK               startup_nuc100series.o
+    0x20000440        -       0x00000060   Zero   RW          345    .bss                c_p.l(libspace.o)
+    0x200004a0        -       0x00000020   Zero   RW           74    .bss..L_MergedGlobals.9  main.o
+    0x200004c0        -       0x00000400   Zero   RW          245    .bss.DisplayBuffer  lcd.o
+    0x200008c0        -       0x00000004   Zero   RW           71    .bss.mapCol         main.o
+    0x200008c4        -       0x00000100   Zero   RW           70    .bss.map_display    main.o
+    0x200009c4   0x00001494   0x00000004   PAD
+    0x200009c8        -       0x00000000   Zero   RW           15    HEAP                startup_nuc100series.o
+    0x200009c8        -       0x00000400   Zero   RW           14    STACK               startup_nuc100series.o
 
 
 ==============================================================================
@@ -1239,12 +1305,12 @@ Image component sizes
 
         42          0          0          0          0       1495   gpio.o
        586         12        480          0       1024      16460   lcd.o
-      1914        204          3       1036         36       7666   main.o
+      2154        252        259       1044        292       8316   main.o
        100         46        192          0       1024        732   startup_nuc100series.o
          2          0          0         44          0       2219   system_nuc100series.o
 
     ----------------------------------------------------------------------
-      2652        262        708       1080       2088      28572   Object Totals
+      2892        310        964       1088       2344      29222   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          8          0          1          0          4          0   (incl. Padding)
 
@@ -1305,15 +1371,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3960        316        708       1080       2184      29272   Grand Totals
-      3960        316        708         96       2184      29272   ELF Image Totals (compressed)
-      3960        316        708         96          0          0   ROM Totals
+      4200        364        964       1088       2440      29922   Grand Totals
+      4200        364        964        104       2440      29922   ELF Image Totals (compressed)
+      4200        364        964        104          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4668 (   4.56kB)
-    Total RW  Size (RW Data + ZI Data)              3264 (   3.19kB)
-    Total ROM Size (Code + RO Data + RW Data)       4764 (   4.65kB)
+    Total RO  Size (Code + RO Data)                 5164 (   5.04kB)
+    Total RW  Size (RW Data + ZI Data)              3528 (   3.45kB)
+    Total ROM Size (Code + RO Data + RW Data)       5268 (   5.14kB)
 
 ==============================================================================
 

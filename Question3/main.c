@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 #define TMR0_COUNTS 100000
 #define HXT_STATUS 1<<0
@@ -28,7 +29,12 @@ void GPIO_Config(void);
 void checkState(int state);
 int getMatrixKey(void);
 void ScanAndDisplay(void);
+void hitScan(void); // scan if hit
 
+
+int countShipSpot(void);
+static int WinCon = 0;
+static char WinCon_ch[4] = "0000"; 
 
 extern unsigned char amogus[32*32] = {
 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x80,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0xC0,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x00,0x00,0x00,
@@ -43,7 +49,12 @@ static char shots_ch[4] = "0000";
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------MAP VARIABLE-----------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+`map_display` is the map that shows on the LCDs
+`map_ship` is the map that is use for scanning the hits
+when hits, change the hit spot to 1 in the `map_display`
 */
+	
+	
 static int map_display[8][8]={
 {0,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0},
@@ -56,25 +67,19 @@ static int map_display[8][8]={
 };
 
 static int map_ship[8][8]={
-{0,0,0,0,0,0,0,0},
-{0,0,0,1,1,0,0,0},
-{0,0,0,0,0,0,0,0},
-{0,0,0,0,0,0,0,0},
+{1,0,0,0,0,0,0,0},
+{1,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0},
-{0,1,1,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
+{0,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0}
 };
 
+static int score = 0;
+static char score_ch[1] = "0";
 
-
-
-static int shipCoordinate[4][2][2] = {
-																		{{1,2}, {3,5}}, 
-																		{{7,5}, {5,3}},
-																		{{7,5}, {5,3}},
-																		{{7,5}, {5,3}}
-																		};
 
 /*
 0 = menu
@@ -86,10 +91,16 @@ static char state_ch[4] = "0000";
 static int mapRow = 2;
 static int mapCol = 0;
 
-static int currentX = 0; // To show the user current x or y
-static int currentY = 0;
-static char currentX_ch[1] = "0";
-static char currentY_ch[1] = "0";
+/*
+BECAUSE IN THE GAMEPLAY, WE SEE THE COLUMN AND ROW STARTS WITH `1`
+HOWEVER, IN THE SYSTEM ARRAY `map_ship` AND `map_display` THE COLUMN AND ROW STARTS WITH 0
+THEREFORE WHEN HITSCAN THE COORDINATE, WE NEED TO -1 BOTH OF THE COORDINATE, HENCE THE STARTING POSITION IS 1 INSTEAD 0
+*/
+
+static int currentX = 1; // To show the user current x or y
+static int currentY = 1;
+static char currentX_ch[1] = "1";
+static char currentY_ch[1] = "1";
 
 static int bullets = 0;
 
@@ -119,7 +130,7 @@ static int segmentBit = 0;
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 int main(){
-
+	
 	System_config();
 	SPI3_config();
 	
@@ -132,15 +143,16 @@ int main(){
 	PC->DOUT |= (1<<7);     
 	PC->DOUT &= ~(1<<6);		
 	PC->DOUT &= ~(1<<5);		
-	PC->DOUT &= ~(1<<4);		
+	PC->DOUT &= ~(1<<4);	
+
+	WinCon = countShipSpot();
+	sprintf(WinCon_ch, "%d", countShipSpot());	
 	
 	TIMER0_Config();
 	
+
 	while(1){		
 		ScanAndDisplay();
-
-	
-		
 		checkState(state);
 		CLK_SysTickDelay(1000);
 	}
@@ -196,7 +208,7 @@ void System_config(void){
 void UART0_Init(void) {
 	// UART0 pin configuration. PB.1 pin is for UART0 TX
 	PB->PMD &= ~(0b11 << 2);
-	PB->PMD |= (0b01 << 2); // PB.1 is output pin
+	PB->PMD |= (0b01 << 2);
 	SYS->GPB_MFP |= (1 << 1); // GPB_MFP[1] = 1 -> PB.1 is UART0 TX pin
 	
 	SYS->GPB_MFP |= (1 << 0); // GPB_MFP[0] = 1 -> PB.0 is UART0 RX pin	
@@ -486,6 +498,9 @@ void GPIO_Config(void)	{
 	GPIO_SetMode(PA, BIT4, GPIO_MODE_QUASI);
 	GPIO_SetMode(PA, BIT5, GPIO_MODE_QUASI);
 	
+	PC->PMD &= (~(0x03 << 12)); // LED hit
+	PC->PMD |= (0x01 << 12); // LED hit
+	
 	PB->PMD &= (~(0x03 << 30)); // Input
 	PB->IMD &= (~(1 << 15)); // Detect edge-trigger interrupt 
 	PB->IEN |= (1 << 15); // falling edge-trigger
@@ -527,7 +542,7 @@ int getMatrixKey(void){
 }
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--------------------------------------INTERRUPT----------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------INTERRUPT & SHOOTING----------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
 
@@ -540,15 +555,36 @@ void EINT1_IRQHandler(void) {
 			break;
 		case 1:
 			if(bullets < 16){
+				hitScan();
 				bullets++;
+				if(score == WinCon){
+					state = 2;
+				}
+				
 				break;
 			}
-			else if(bullets == 16){
+			else if(bullets >= 16){
 				state = 2;
+				break;
 			}
 	}
 	
 	PB->ISRC |= (1 << 15);
+}
+
+void hitScan(void){
+	if(map_ship[currentY-1][currentX-1] == 1){
+		// Check if the position on `map_display` already changed/shot before
+		if(map_display[currentY-1][currentX-1] != 1){
+			map_display[currentY-1][currentX-1] = 1;
+			score++;
+			sprintf(score_ch, "%d", score);
+			for(int i = 0; i < 6; i++){
+				CLK_SysTickDelay(10000);
+				PC->DOUT ^= 1 << 12;
+			}
+		}
+	}
 }
 
 /*
@@ -556,6 +592,17 @@ void EINT1_IRQHandler(void) {
 -------------------------------GAMELOGIC----------------------------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 */
+int countShipSpot(void){
+	int counting = 0;
+	for (int i=0; i<8;i++){
+		for (int j=0; j<8;j++){
+			if(map_ship[i][j] == 1){
+				counting++;
+			}
+		}
+	}
+	return counting;
+}
 
 void checkState(int state){
 	if(state == 0){
@@ -571,15 +618,23 @@ void checkState(int state){
 	menu:
 				printS_5x7(4, 10, "Battleship");
 				printS_5x7(4, 18, "By hehe");
-				printS_5x7(100, 26, state_ch);
+				//printS_5x7(100, 26, state_ch);
 				draw_Bmp32x32(4, 30, 1, 0, amogus); 
 				CLK_SysTickDelay(1000000);
 				return;
 	
 	map:
-		CLK_SysTickDelay(500);	
+		//CLK_SysTickDelay(500);	
+		//printS_5x7(67, 12, "Objects: ");
+		//printS_5x7(120, 12, WinCon_ch);
+		//printS_5x7(67, 12, strcat("Objects: ", WinCon_ch));
+	
+		printS_5x7(67, 20, "Score:");
+		printS_5x7(100, 20, score_ch);
+	
 		printS_5x7(67, 32, "Current x:");
 		printS_5x7(120, 32, currentX_ch);
+	
 		printS_5x7(67, 40, "Current y:");
 		printS_5x7(120, 40, currentY_ch);
 	

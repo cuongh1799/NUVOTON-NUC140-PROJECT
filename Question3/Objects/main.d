@@ -28,4 +28,5 @@
   C:\Keil_v5\Library\StdDriver\Include\ACMP.h \
   C:\Keil_v5\Library\NUC1xx-LB_002\Include\LCD.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
