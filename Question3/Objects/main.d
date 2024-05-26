@@ -29,4 +29,6 @@
   C:\Keil_v5\Library\NUC1xx-LB_002\Include\LCD.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\math.h \
   C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stdbool.h \
-  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h
+  C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\string.h \
+  C:\Keil_v5\Library\NuMakerLib\Include\MCU_init.h \
+  C:\Keil_v5\Library\NuMakerLib\Include\SYS_init.h

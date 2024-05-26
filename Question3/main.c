@@ -6,6 +6,8 @@
 #include <math.h>
 #include <stdbool.h>
 #include <string.h>
+#include "MCU_init.h"
+#include "SYS_init.h"
 
 #define TMR0_COUNTS 100000
 #define HXT_STATUS 1<<0
@@ -19,6 +21,9 @@ void LCD_data(unsigned char temp);
 void LCD_clear(void);
 void LCD_SetAddress(uint8_t PageAddr, uint8_t ColumnAddr);
 void SPI2_TX(unsigned char temp);
+void UART02_IRQHandler(void);
+void UART0_Init(void);
+int byteToInt(unsigned char byte);
 
 void clr_segment(void);
 void show_segment(unsigned char n, unsigned char number);
@@ -30,6 +35,7 @@ void checkState(int state);
 int getMatrixKey(void);
 void ScanAndDisplay(void);
 void hitScan(void); // scan if hit
+void appendChar(char *str, char c);
 
 
 int countShipSpot(void);
@@ -53,7 +59,7 @@ static char shots_ch[4] = "0000";
 `map_ship` is the map that is use for scanning the hits
 when hits, change the hit spot to 1 in the `map_display`
 */
-	
+
 	
 static int map_display[8][8]={
 {0,0,0,0,0,0,0,0},
@@ -65,6 +71,11 @@ static int map_display[8][8]={
 {0,0,0,0,0,0,0,0},
 {0,0,0,0,0,0,0,0}
 };
+
+// Both of this is use for the UART transfering... things
+// `uploadIndexIndex` should be Y, `uploadIndex` should be X
+static int uploadIndex= 0;
+static int uploadIndexIndex = 0;
 
 static int map_ship[8][8]={
 {1,0,0,0,0,0,0,0},
@@ -79,7 +90,6 @@ static int map_ship[8][8]={
 
 static int score = 0;
 static char score_ch[1] = "0";
-
 
 /*
 0 = menu
@@ -137,6 +147,7 @@ int main(){
 	LCD_start();
 	LCD_clear();
 	GPIO_Config();
+	UART0_Init();
 	
 	PB->PMD &= (~(0x03<<30)); // enable GPB15 (the button)
 	
@@ -187,14 +198,20 @@ void System_config(void){
 	// SPI3 clock enable
 	CLK->APBCLK |= 1 << 15;
 	
-	// SPI2 clock enable
-	CLK->APBCLK |= 1 << 14;
-	
+	/*
 	//ADC Clock selection and configuration
 	CLK->CLKSEL1 &= ~(0x03 << 2); // ADC clock source is 12 MHz
 	CLK->CLKDIV &= ~(0x0FF << 16);
 	CLK->CLKDIV |= (0x0B << 16); // ADC clock divider is (11+1) --> ADC clock is 12/12 = 1 MHz
 	CLK->APBCLK |= (0x01 << 28); // enable ADC clock
+	*/
+	
+	//UART0 Clock selection and configuration
+	CLK->CLKSEL1 &= ~(0b11 << 24);
+	CLK->CLKSEL1 |= (0b11 << 24); // 22. something
+	//CLK->CLKSEL1 |= (0b01 << 24); // UART0 clock source is PLLsource
+	CLK->CLKDIV &= ~(0xF << 8); // clock divider is 1
+	CLK->APBCLK |= (1 << 16); // enable UART0 clock
 	
 	SYS_LockReg();  // Lock protected registers 
 }
@@ -208,7 +225,7 @@ void System_config(void){
 void UART0_Init(void) {
 	// UART0 pin configuration. PB.1 pin is for UART0 TX
 	PB->PMD &= ~(0b11 << 2);
-	PB->PMD |= (0b01 << 2);
+	PB->PMD |= (0b01 << 2); // PB.1 is output pin
 	SYS->GPB_MFP |= (1 << 1); // GPB_MFP[1] = 1 -> PB.1 is UART0 TX pin
 	
 	SYS->GPB_MFP |= (1 << 0); // GPB_MFP[0] = 1 -> PB.0 is UART0 RX pin	
@@ -588,6 +605,20 @@ void hitScan(void){
 	}
 }
 
+void UART02_IRQHandler(void) {
+    uint8_t receivedData;
+    
+    // Check if interrupt is caused by received data available
+    if (UART0->ISR & 1 << 8) {
+		
+			// Get data from RBR (Receive Buffer Register)
+			receivedData = UART0->RBR;		
+			UART0->THR = receivedData;
+    }
+    // Clear the interrupt flags
+    UART0->ISR = ~(1 << 8);
+}
+
 /*
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------GAMELOGIC----------------------------------------------------------------------------------------------------------------------------------------
@@ -669,4 +700,14 @@ void checkState(int state){
 		clr_segment();
 		printS_5x7(20, 32, "gg you lost");
 		return;
+}
+
+int byteToInt(unsigned char byte) {
+    return (int)byte; // Typecast byte to int
+}
+
+void appendChar(char *str, char c) {
+    int len = strlen(str); // Find the length of the string
+    str[len] = c; // Append the character
+    str[len + 1] = '\0'; // Add the null terminator
 }

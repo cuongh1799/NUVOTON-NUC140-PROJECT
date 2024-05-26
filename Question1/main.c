@@ -56,16 +56,17 @@ void UART02_IRQHandler(void) {
     
     // Check if interrupt is caused by received data available
     if (UART0->ISR & 1 << 8) {
-			/*
+			
         // Get data from RBR (Receive Buffer Register)
         receivedData = UART0->RBR;
         
         // Process the received data (for example, echo back)
 			
         UART0->THR = receivedData;
-			*/
 			
+			/*
 				UART0->THR = UART0->RBR;
+			*/
     }
     // Clear the interrupt flags
     UART0->ISR = ~(1 << 8);
