@@ -25,3 +25,4 @@ Using the NUC140 and its AD converter, create a program that allow the NUC140 to
 Implementation:
 - We're going to calculate the Voltage input as we already know the Reference Voltage (3.3V), Resolution.
 - From this we're going to send data through SPI3 to display on the LCD
+- In the meantime if Voltage is 2 or above, it will display special message on LCD and through SPI2
