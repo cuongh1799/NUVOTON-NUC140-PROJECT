@@ -72,7 +72,7 @@ int main(){
 			printS_5x7(2, 56, "hehe");
 			
 			// put AD at 2585 for best quality hehe
-			SPI2_TX(0x48); // H
+			SPI2_TX('H'); // H
 			SPI2_TX(0x45); // E
 			SPI2_TX(0x48); // H
 			SPI2_TX(0x45); // E
@@ -166,7 +166,7 @@ void SPI2_config(void){
 	SPI2->CNTRL &= ~(1 << 17); //0: disable SPI interrupt
 	SPI2->CNTRL |= 1 << 11; //1: SPI clock idle high
 	SPI2->CNTRL &= ~(1 << 2); // Disable transmit at negative edge
-	//SPI2->CNTRL |= 1 << 1; // test later hehe idk if its needed
+	//SPI2->CNTRL |= 1 << 1; // J   test later hehe idk if its needed
 	SPI2->CNTRL &= ~(1 << 10); 
 	SPI2->CNTRL |= 1 << 10; //1: LSB is sent first
 	SPI2->CNTRL |= 8 << 3; // 1 byte/word
